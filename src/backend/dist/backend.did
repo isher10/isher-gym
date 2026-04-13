@@ -1,0 +1,16 @@
+type ProgressEntry = 
+ record {
+   date: text;
+   id: nat;
+   notes: text;
+   weight: float64;
+   workoutsCompleted: nat;
+ };
+service : {
+  addProgress: (weight: float64, workoutsCompleted: nat, notes: text, date:
+   text) -> (ProgressEntry);
+  deleteProgress: (id: nat) -> (bool);
+  listProgress: () -> (vec ProgressEntry) query;
+  updateProgress: (id: nat, weight: float64, workoutsCompleted: nat, notes:
+   text, date: text) -> (bool);
+}

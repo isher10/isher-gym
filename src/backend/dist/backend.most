@@ -1,0 +1,20 @@
+// Version: 1.0.0
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type ProgressEntry__663687226 =
+  {
+    date : Text;
+    id : Nat;
+    notes : Text;
+    weight : Float;
+    workoutsCompleted : Nat
+  };
+actor {
+  stable progressCounter : {var id : Nat};
+  stable progressEntries :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ProgressEntry__663687226]];
+      var elementIndex : Nat__490723111
+    }
+};
