@@ -89,6 +89,27 @@ export class ExternalBlob {
         return this;
     }
 }
+export interface ReminderSettings {
+    time: string;
+    enabled: boolean;
+    restDays: Array<bigint>;
+}
+export interface UserChallenge {
+    id: bigint;
+    templateId: bigint;
+    completed: boolean;
+    badgeEarned: boolean;
+    currentDay: bigint;
+    startDate: string;
+}
+export interface BmiEntry {
+    id: bigint;
+    bmi: number;
+    weight: number;
+    height: number;
+    date: string;
+    category: string;
+}
 export interface ProgressEntry {
     id: bigint;
     weight: number;
@@ -96,14 +117,114 @@ export interface ProgressEntry {
     notes: string;
     workoutsCompleted: bigint;
 }
+export interface FeedbackEntry {
+    id: bigint;
+    date: string;
+    name: string;
+    photoUrl: string;
+    message: string;
+}
+export interface ChallengeTemplate {
+    id: bigint;
+    durationDays: bigint;
+    goal: string;
+    difficulty: string;
+    name: string;
+    exercises: Array<string>;
+    description: string;
+}
+export interface GamificationProfile {
+    totalChallengesCompleted: bigint;
+    badges: Array<string>;
+    lastActivityDate: string;
+    totalWorkoutsLogged: bigint;
+    level: bigint;
+    points: bigint;
+}
 export interface backendInterface {
+    addBmiEntry(height: number, weight: number, date: string): Promise<BmiEntry>;
+    addChallengeTemplate(name: string, description: string, durationDays: bigint, goal: string, difficulty: string, exercises: Array<string>): Promise<ChallengeTemplate>;
+    addFeedback(name: string, photoUrl: string, message: string, date: string): Promise<bigint>;
+    addPoints(amount: bigint, reason: string): Promise<GamificationProfile>;
     addProgress(weight: number, workoutsCompleted: bigint, notes: string, date: string): Promise<ProgressEntry>;
+    addUserChallenge(templateId: bigint, startDate: string): Promise<UserChallenge>;
+    deleteBmiEntry(id: bigint): Promise<boolean>;
+    deleteChallengeTemplate(id: bigint): Promise<boolean>;
+    deleteFeedback(id: bigint): Promise<boolean>;
     deleteProgress(id: bigint): Promise<boolean>;
+    deleteUserChallenge(id: bigint): Promise<boolean>;
+    getGamificationProfile(): Promise<GamificationProfile>;
+    getReminderSettings(): Promise<ReminderSettings | null>;
+    listBmiEntries(): Promise<Array<BmiEntry>>;
+    listChallengeTemplates(): Promise<Array<ChallengeTemplate>>;
+    listFeedback(): Promise<Array<FeedbackEntry>>;
     listProgress(): Promise<Array<ProgressEntry>>;
+    listUserChallenges(): Promise<Array<UserChallenge>>;
+    resetGamification(): Promise<void>;
+    saveReminderSettings(enabled: boolean, time: string, restDays: Array<bigint>): Promise<ReminderSettings>;
+    unlockBadge(badgeId: string): Promise<boolean>;
+    updateChallengeProgress(id: bigint, currentDay: bigint, completed: boolean, badgeEarned: boolean): Promise<boolean>;
     updateProgress(id: bigint, weight: number, workoutsCompleted: bigint, notes: string, date: string): Promise<boolean>;
 }
+import type { ReminderSettings as _ReminderSettings } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
+    async addBmiEntry(arg0: number, arg1: number, arg2: string): Promise<BmiEntry> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addBmiEntry(arg0, arg1, arg2);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addBmiEntry(arg0, arg1, arg2);
+            return result;
+        }
+    }
+    async addChallengeTemplate(arg0: string, arg1: string, arg2: bigint, arg3: string, arg4: string, arg5: Array<string>): Promise<ChallengeTemplate> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addChallengeTemplate(arg0, arg1, arg2, arg3, arg4, arg5);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addChallengeTemplate(arg0, arg1, arg2, arg3, arg4, arg5);
+            return result;
+        }
+    }
+    async addFeedback(arg0: string, arg1: string, arg2: string, arg3: string): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addFeedback(arg0, arg1, arg2, arg3);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addFeedback(arg0, arg1, arg2, arg3);
+            return result;
+        }
+    }
+    async addPoints(arg0: bigint, arg1: string): Promise<GamificationProfile> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addPoints(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addPoints(arg0, arg1);
+            return result;
+        }
+    }
     async addProgress(arg0: number, arg1: bigint, arg2: string, arg3: string): Promise<ProgressEntry> {
         if (this.processError) {
             try {
@@ -115,6 +236,62 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.addProgress(arg0, arg1, arg2, arg3);
+            return result;
+        }
+    }
+    async addUserChallenge(arg0: bigint, arg1: string): Promise<UserChallenge> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addUserChallenge(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addUserChallenge(arg0, arg1);
+            return result;
+        }
+    }
+    async deleteBmiEntry(arg0: bigint): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteBmiEntry(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteBmiEntry(arg0);
+            return result;
+        }
+    }
+    async deleteChallengeTemplate(arg0: bigint): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteChallengeTemplate(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteChallengeTemplate(arg0);
+            return result;
+        }
+    }
+    async deleteFeedback(arg0: bigint): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteFeedback(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteFeedback(arg0);
             return result;
         }
     }
@@ -132,6 +309,90 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async deleteUserChallenge(arg0: bigint): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteUserChallenge(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteUserChallenge(arg0);
+            return result;
+        }
+    }
+    async getGamificationProfile(): Promise<GamificationProfile> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getGamificationProfile();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getGamificationProfile();
+            return result;
+        }
+    }
+    async getReminderSettings(): Promise<ReminderSettings | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getReminderSettings();
+                return from_candid_opt_n1(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getReminderSettings();
+            return from_candid_opt_n1(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async listBmiEntries(): Promise<Array<BmiEntry>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.listBmiEntries();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.listBmiEntries();
+            return result;
+        }
+    }
+    async listChallengeTemplates(): Promise<Array<ChallengeTemplate>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.listChallengeTemplates();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.listChallengeTemplates();
+            return result;
+        }
+    }
+    async listFeedback(): Promise<Array<FeedbackEntry>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.listFeedback();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.listFeedback();
+            return result;
+        }
+    }
     async listProgress(): Promise<Array<ProgressEntry>> {
         if (this.processError) {
             try {
@@ -143,6 +404,76 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.listProgress();
+            return result;
+        }
+    }
+    async listUserChallenges(): Promise<Array<UserChallenge>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.listUserChallenges();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.listUserChallenges();
+            return result;
+        }
+    }
+    async resetGamification(): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.resetGamification();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.resetGamification();
+            return result;
+        }
+    }
+    async saveReminderSettings(arg0: boolean, arg1: string, arg2: Array<bigint>): Promise<ReminderSettings> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.saveReminderSettings(arg0, arg1, arg2);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.saveReminderSettings(arg0, arg1, arg2);
+            return result;
+        }
+    }
+    async unlockBadge(arg0: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.unlockBadge(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.unlockBadge(arg0);
+            return result;
+        }
+    }
+    async updateChallengeProgress(arg0: bigint, arg1: bigint, arg2: boolean, arg3: boolean): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateChallengeProgress(arg0, arg1, arg2, arg3);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateChallengeProgress(arg0, arg1, arg2, arg3);
             return result;
         }
     }
@@ -160,6 +491,9 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+}
+function from_candid_opt_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_ReminderSettings]): ReminderSettings | null {
+    return value.length === 0 ? null : value[0];
 }
 export interface CreateActorOptions {
     agent?: Agent;

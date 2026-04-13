@@ -10,6 +10,38 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface BmiEntry {
+  'id' : bigint,
+  'bmi' : number,
+  'weight' : number,
+  'height' : number,
+  'date' : string,
+  'category' : string,
+}
+export interface ChallengeTemplate {
+  'id' : bigint,
+  'durationDays' : bigint,
+  'goal' : string,
+  'difficulty' : string,
+  'name' : string,
+  'exercises' : Array<string>,
+  'description' : string,
+}
+export interface FeedbackEntry {
+  'id' : bigint,
+  'date' : string,
+  'name' : string,
+  'photoUrl' : string,
+  'message' : string,
+}
+export interface GamificationProfile {
+  'totalChallengesCompleted' : bigint,
+  'badges' : Array<string>,
+  'lastActivityDate' : string,
+  'totalWorkoutsLogged' : bigint,
+  'level' : bigint,
+  'points' : bigint,
+}
 export interface ProgressEntry {
   'id' : bigint,
   'weight' : number,
@@ -17,10 +49,51 @@ export interface ProgressEntry {
   'notes' : string,
   'workoutsCompleted' : bigint,
 }
+export interface ReminderSettings {
+  'time' : string,
+  'enabled' : boolean,
+  'restDays' : Array<bigint>,
+}
+export interface UserChallenge {
+  'id' : bigint,
+  'templateId' : bigint,
+  'completed' : boolean,
+  'badgeEarned' : boolean,
+  'currentDay' : bigint,
+  'startDate' : string,
+}
 export interface _SERVICE {
+  'addBmiEntry' : ActorMethod<[number, number, string], BmiEntry>,
+  'addChallengeTemplate' : ActorMethod<
+    [string, string, bigint, string, string, Array<string>],
+    ChallengeTemplate
+  >,
+  'addFeedback' : ActorMethod<[string, string, string, string], bigint>,
+  'addPoints' : ActorMethod<[bigint, string], GamificationProfile>,
   'addProgress' : ActorMethod<[number, bigint, string, string], ProgressEntry>,
+  'addUserChallenge' : ActorMethod<[bigint, string], UserChallenge>,
+  'deleteBmiEntry' : ActorMethod<[bigint], boolean>,
+  'deleteChallengeTemplate' : ActorMethod<[bigint], boolean>,
+  'deleteFeedback' : ActorMethod<[bigint], boolean>,
   'deleteProgress' : ActorMethod<[bigint], boolean>,
+  'deleteUserChallenge' : ActorMethod<[bigint], boolean>,
+  'getGamificationProfile' : ActorMethod<[], GamificationProfile>,
+  'getReminderSettings' : ActorMethod<[], [] | [ReminderSettings]>,
+  'listBmiEntries' : ActorMethod<[], Array<BmiEntry>>,
+  'listChallengeTemplates' : ActorMethod<[], Array<ChallengeTemplate>>,
+  'listFeedback' : ActorMethod<[], Array<FeedbackEntry>>,
   'listProgress' : ActorMethod<[], Array<ProgressEntry>>,
+  'listUserChallenges' : ActorMethod<[], Array<UserChallenge>>,
+  'resetGamification' : ActorMethod<[], undefined>,
+  'saveReminderSettings' : ActorMethod<
+    [boolean, string, Array<bigint>],
+    ReminderSettings
+  >,
+  'unlockBadge' : ActorMethod<[string], boolean>,
+  'updateChallengeProgress' : ActorMethod<
+    [bigint, bigint, boolean, boolean],
+    boolean
+  >,
   'updateProgress' : ActorMethod<
     [bigint, number, bigint, string, string],
     boolean

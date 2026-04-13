@@ -1,25 +1,29 @@
 {
-  "overview": "Isher Gym is a modern fitness mobile web app for a local gym. It features a dark theme with energetic accents, covering workout guides for 6 muscle groups, diet plans, progress tracking, membership info, and gym details — all without requiring login.",
+  "overview": "Isher Gym is a mobile-first fitness companion app for a local gym. It helps users track workouts, follow diet plans, calculate BMI, join fitness challenges, set reminders, and earn rewards through a gamification system. The app features bilingual support (English + Hindi), a modern design, and a feedback system with a sliding carousel on the home page.",
   "features": [
-    "Home screen with motivational quotes and gym services",
-    "6 workout categories with detailed exercise guides",
-    "Diet plans for beginners, weight gain, and weight loss",
-    "Progress tracking for weight and completed workouts",
-    "Membership tiers and pricing info",
-    "Gym info, trainer profiles, and contact details",
-    "Dark fitness-focused theme with mobile-first design",
-    "No login required"
+    "Feedback form with name/photo and avatar fallback",
+    "Sliding feedback carousel on home page",
+    "Hero section with rotating gym photos",
+    "Top sticky navigation bar",
+    "Bilingual exercise instructions (English + Hindi)",
+    "Exercise photos with duration and timing info",
+    "Diet section with Hindi support and veg/non-veg options",
+    "BMI Calculator",
+    "Workout Challenges with badges",
+    "Workout Reminders with browser notifications",
+    "Gamification Hub with points and levels",
+    "Progress tracking with charts"
   ],
-  "category": "fitness",
+  "category": "health-fitness",
   "tags": [
     "gym",
     "fitness",
     "workout",
+    "diet",
+    "hindi",
     "mobile",
     "dark-theme",
-    "exercise",
-    "diet",
-    "progress-tracking"
+    "gamification"
   ],
-  "last_updated": "2026-04-13T03:56:11.933Z"
+  "last_updated": "2026-04-13T12:43:31.908Z"
 }

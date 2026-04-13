@@ -1,4 +1,34 @@
 // Version: 1.0.0
+type BmiEntry__163865717 =
+  {
+    bmi : Float;
+    category : Text;
+    date : Text;
+    height : Float;
+    id : Nat;
+    weight : Float
+  };
+type ChallengeTemplate__1036093743 =
+  {
+    description : Text;
+    difficulty : Text;
+    durationDays : Nat;
+    exercises : [Text];
+    goal : Text;
+    id : Nat;
+    name : Text
+  };
+type FeedbackEntry__120174675 =
+  {date : Text; id : Nat; message : Text; name : Text; photoUrl : Text};
+type GamificationProfile__303381345 =
+  {
+    badges : [Text];
+    lastActivityDate : Text;
+    level : Nat;
+    points : Nat;
+    totalChallengesCompleted : Nat;
+    totalWorkoutsLogged : Nat
+  };
 type Nat__490723111 = Nat__920180692;
 type Nat__920180692 = Nat;
 type ProgressEntry__663687226 =
@@ -9,12 +39,53 @@ type ProgressEntry__663687226 =
     weight : Float;
     workoutsCompleted : Nat
   };
+type ReminderSettings__436772885 =
+  {enabled : Bool; restDays : [Nat]; time : Text};
+type UserChallenge__1056935674 =
+  {
+    badgeEarned : Bool;
+    completed : Bool;
+    currentDay : Nat;
+    id : Nat;
+    startDate : Text;
+    templateId : Nat
+  };
 actor {
+  stable bmiCounter : {var id : Nat};
+  stable bmiEntries :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?BmiEntry__163865717]];
+      var elementIndex : Nat__490723111
+    };
+  stable challengeCounter : {var id : Nat};
+  stable challengeTemplates :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ChallengeTemplate__1036093743]];
+      var elementIndex : Nat__490723111
+    };
+  stable feedbackCounter : {var id : Nat};
+  stable feedbackEntries :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?FeedbackEntry__120174675]];
+      var elementIndex : Nat__490723111
+    };
+  stable gamificationProfile : {var value : ?GamificationProfile__303381345};
   stable progressCounter : {var id : Nat};
   stable progressEntries :
     {
       var blockIndex : Nat__490723111;
       var blocks : [var [var ?ProgressEntry__663687226]];
+      var elementIndex : Nat__490723111
+    };
+  stable reminderSettings : {var value : ?ReminderSettings__436772885};
+  stable templateCounter : {var id : Nat};
+  stable userChallenges :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?UserChallenge__1056935674]];
       var elementIndex : Nat__490723111
     }
 };

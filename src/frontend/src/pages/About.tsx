@@ -80,8 +80,8 @@ const CONTACT_ITEMS = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+91 98765 43210",
-    href: "tel:+919876543210",
+    value: "7023095979",
+    href: "tel:7023095979",
     ocid: "contact-phone",
   },
   {

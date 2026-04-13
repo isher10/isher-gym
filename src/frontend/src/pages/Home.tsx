@@ -1,7 +1,31 @@
+import { useListFeedback } from "@/hooks/use-backend";
+import type { FeedbackEntry } from "@/types";
 import { Link } from "@tanstack/react-router";
-import { ChevronRight, RefreshCw } from "lucide-react";
+import {
+  BarChart2,
+  Bell,
+  Calculator,
+  ChevronRight,
+  CreditCard,
+  Dumbbell,
+  House,
+  Info,
+  MessageSquare,
+  RefreshCw,
+  Salad,
+  Star,
+  Trophy,
+} from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
+  "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80",
+  "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80",
+  "https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=800&q=80",
+  "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80",
+];
 
 const QUOTES = [
   {
@@ -24,18 +48,12 @@ const QUOTES = [
     text: "Don't limit your challenges. Challenge your limits.",
     author: "Unknown",
   },
-  {
-    text: "It never gets easier. You just get stronger.",
-    author: "Unknown",
-  },
+  { text: "It never gets easier. You just get stronger.", author: "Unknown" },
   {
     text: "The pain you feel today will be the strength you feel tomorrow.",
     author: "Unknown",
   },
-  {
-    text: "Wake up. Work out. Be stronger. Repeat.",
-    author: "Isher Gym",
-  },
+  { text: "Wake up. Work out. Be stronger. Repeat.", author: "Isher Gym" },
 ];
 
 const BENEFITS = [
@@ -71,9 +89,170 @@ const BENEFITS = [
   },
 ];
 
+const QUICK_LINKS = [
+  { to: "/", label: "Home", icon: House },
+  { to: "/workouts", label: "Workouts", icon: Dumbbell },
+  { to: "/diet", label: "Diet", icon: Salad },
+  { to: "/progress", label: "Progress", icon: BarChart2 },
+  { to: "/challenges", label: "Challenges", icon: Trophy },
+  { to: "/bmi", label: "BMI", icon: Calculator },
+  { to: "/membership", label: "Membership", icon: CreditCard },
+  { to: "/about", label: "About", icon: Info },
+  { to: "/reminders", label: "Reminders", icon: Bell },
+  { to: "/gamification", label: "Gamification", icon: Star },
+  { to: "/feedback", label: "Feedback", icon: MessageSquare },
+] as const;
+
+function FeedbackCard({ entry }: { entry: FeedbackEntry }) {
+  const firstLetter = entry.name.trim().charAt(0).toUpperCase();
+  const formattedDate = (() => {
+    try {
+      return new Date(entry.date).toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    } catch {
+      return entry.date;
+    }
+  })();
+
+  return (
+    <div className="card-elevated rounded-2xl p-4 flex flex-col gap-2.5 min-w-[240px] max-w-[260px] shrink-0">
+      <div className="flex items-center gap-2.5">
+        {entry.photoUrl ? (
+          <img
+            src={entry.photoUrl}
+            alt={entry.name}
+            className="w-9 h-9 rounded-full object-cover shrink-0 border border-border"
+          />
+        ) : (
+          <div className="w-9 h-9 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0">
+            <span className="text-primary font-display font-bold text-sm">
+              {firstLetter}
+            </span>
+          </div>
+        )}
+        <div className="min-w-0">
+          <p className="font-display font-bold text-sm text-foreground leading-tight truncate">
+            {entry.name}
+          </p>
+          <p className="text-muted-foreground text-xs font-body">
+            {formattedDate}
+          </p>
+        </div>
+      </div>
+      <p className="text-foreground/80 text-xs font-body leading-relaxed line-clamp-3">
+        {entry.message}
+      </p>
+    </div>
+  );
+}
+
+function FeedbackCarousel() {
+  const { data: feedbackList = [] } = useListFeedback();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  useEffect(() => {
+    if (feedbackList.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % feedbackList.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [feedbackList.length]);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el || feedbackList.length === 0) return;
+    const cards = el.querySelectorAll<HTMLDivElement>("[data-card]");
+    const card = cards[currentIdx];
+    if (card) {
+      card.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [currentIdx, feedbackList.length]);
+
+  return (
+    <section className="py-7 bg-card/40" data-ocid="feedback-section">
+      <div className="px-4 mb-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="font-display text-xl font-bold text-foreground mb-1"
+        >
+          Hamari Community
+        </motion.h2>
+        <p className="text-muted-foreground text-sm font-body">
+          Members ki real feelings
+        </p>
+      </div>
+
+      {feedbackList.length === 0 ? (
+        <div
+          className="mx-4 card-elevated rounded-2xl p-6 text-center"
+          data-ocid="feedback-empty"
+        >
+          <p className="text-2xl mb-2">💬</p>
+          <p className="font-display font-semibold text-sm text-foreground mb-1">
+            No feedback yet
+          </p>
+          <p className="text-muted-foreground text-xs font-body">
+            Be the first to share your experience!
+          </p>
+        </div>
+      ) : (
+        <>
+          <div
+            ref={scrollRef}
+            className="flex gap-3 overflow-x-auto px-4 pb-2 scroll-smooth"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            data-ocid="feedback-carousel"
+          >
+            {feedbackList.map((entry, i) => (
+              <div key={String(entry.id)} data-card="" data-idx={i}>
+                <FeedbackCard entry={entry} />
+              </div>
+            ))}
+          </div>
+
+          {feedbackList.length > 1 && (
+            <div className="flex justify-center gap-1.5 mt-3 px-4">
+              {feedbackList.map((entry, i) => (
+                <button
+                  type="button"
+                  key={String(entry.id)}
+                  onClick={() => setCurrentIdx(i)}
+                  className={`h-1.5 rounded-full transition-smooth ${
+                    i === currentIdx ? "w-5 bg-primary" : "w-1.5 bg-border"
+                  }`}
+                  aria-label={`Feedback ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </>
+      )}
+    </section>
+  );
+}
+
 export default function Home() {
+  const [heroIdx, setHeroIdx] = useState(0);
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+
+  // Auto-advance hero every 4s
+  useEffect(() => {
+    const id = setInterval(() => {
+      setHeroIdx((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, []);
 
   const nextQuote = () => {
     setDirection(1);
@@ -84,18 +263,27 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="relative overflow-hidden">
+      {/* Hero with slideshow */}
+      <section className="relative overflow-hidden min-h-[420px] flex flex-col">
+        {/* Sliding background images */}
         <div className="absolute inset-0">
-          <img
-            src="/assets/generated/gym-hero.dim_800x500.jpg"
-            alt="Isher Gym"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/75 to-background" />
+          <AnimatePresence mode="sync">
+            <motion.img
+              key={heroIdx}
+              src={HERO_IMAGES[heroIdx]}
+              alt="Isher Gym"
+              className="absolute inset-0 w-full h-full object-cover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.9, ease: "easeInOut" }}
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-b from-background/55 via-background/70 to-background" />
         </div>
 
-        <div className="relative px-5 pt-10 pb-12">
+        {/* Hero content */}
+        <div className="relative px-5 pt-10 pb-4 flex-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -137,6 +325,22 @@ export default function Home() {
               </Link>
             </div>
           </motion.div>
+        </div>
+
+        {/* Slide dots */}
+        <div className="relative flex justify-center gap-1.5 pb-4">
+          {HERO_IMAGES.map((src, i) => (
+            <button
+              type="button"
+              key={src}
+              onClick={() => setHeroIdx(i)}
+              className={`h-1.5 rounded-full transition-smooth ${
+                i === heroIdx ? "w-5 bg-primary" : "w-1.5 bg-foreground/30"
+              }`}
+              aria-label={`Slide ${i + 1}`}
+              data-ocid={`hero-dot-${i}`}
+            />
+          ))}
         </div>
       </section>
 
@@ -205,7 +409,7 @@ export default function Home() {
           viewport={{ once: true }}
           className="font-display text-xl font-bold text-foreground mb-1"
         >
-          Gym Benefits & Services
+          Gym Benefits &amp; Services
         </motion.h2>
         <p className="text-muted-foreground text-sm mb-5 font-body">
           Everything you need to reach your peak.
@@ -236,52 +440,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick actions */}
-      <section className="px-4 py-6 bg-muted/30">
-        <h2 className="font-display text-xl font-bold text-foreground mb-1">
+      {/* Quick Access icon grid */}
+      <section
+        className="px-4 py-7 bg-muted/30"
+        data-ocid="quick-access-section"
+      >
+        <motion.h2
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="font-display text-xl font-bold text-foreground mb-1"
+        >
           Quick Access
-        </h2>
-        <p className="text-muted-foreground text-sm mb-4 font-body">
-          Jump right into your fitness journey.
+        </motion.h2>
+        <p className="text-muted-foreground text-sm mb-5 font-body">
+          Seedha apni fitness journey mein jump karein.
         </p>
 
-        <div className="flex flex-col gap-2.5">
-          {[
-            {
-              to: "/workouts",
-              label: "Browse Workouts",
-              sub: "6 categories · 40+ exercises",
-              emoji: "🏋️",
-            },
-            {
-              to: "/membership",
-              label: "Membership Plans",
-              sub: "Starter, Pro & Elite options",
-              emoji: "🏆",
-            },
-          ].map(({ to, label, sub, emoji }) => (
-            <Link
+        <div className="grid grid-cols-3 gap-3">
+          {QUICK_LINKS.map(({ to, label, icon: Icon }, i) => (
+            <motion.div
               key={to}
-              to={to}
-              className="card-elevated rounded-2xl flex items-center gap-3.5 px-4 py-4 transition-smooth active:scale-[0.98]"
-              data-ocid={`quick-${label.toLowerCase().replace(/\s+/g, "-")}`}
+              initial={{ opacity: 0, scale: 0.88 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.3 }}
             >
-              <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
-                <span className="text-2xl">{emoji}</span>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-display font-semibold text-sm text-foreground">
+              <Link
+                to={to}
+                className="flex flex-col items-center gap-2 py-4 px-2 rounded-2xl card-elevated border border-border/60 hover:border-primary/50 hover:bg-primary/5 active:scale-[0.96] transition-smooth text-center"
+                data-ocid={`quick-link-${label.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center">
+                  <Icon size={20} className="text-primary" strokeWidth={1.8} />
+                </div>
+                <span className="font-display font-semibold text-xs text-foreground leading-tight">
                   {label}
-                </p>
-                <p className="text-muted-foreground text-xs mt-0.5 font-body">
-                  {sub}
-                </p>
-              </div>
-              <ChevronRight
-                size={16}
-                className="text-muted-foreground shrink-0"
-              />
-            </Link>
+                </span>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -312,6 +509,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Member Feedback Carousel */}
+      <FeedbackCarousel />
 
       {/* Branding footer */}
       <div className="px-4 py-6 text-center bg-card/40 border-t border-border">

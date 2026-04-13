@@ -78,10 +78,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        subtle: "0 2px 8px 0 rgba(0,0,0,0.15)",
-        elevated: "0 4px 16px 0 rgba(0,0,0,0.25)",
-        "glow-accent": "0 0 16px 0 rgba(255,87,51,0.2)",
+        xs: "0 1px 2px 0 rgba(0,0,0,0.08)",
+        subtle: "0 2px 6px 0 rgba(0,0,0,0.12)",
+        elevated: "0 4px 12px 0 rgba(0,0,0,0.18)",
+        "glow-accent": "0 0 12px 0 rgba(255,87,51,0.15)",
       },
       keyframes: {
         "accordion-down": {

@@ -1,6 +1,13 @@
 import { WORKOUT_CATEGORIES } from "@/data/workouts";
 import { Link, useParams } from "@tanstack/react-router";
-import { ArrowLeft, ChevronRight, Flame, Target, Zap } from "lucide-react";
+import {
+  ArrowLeft,
+  ChevronRight,
+  Clock,
+  Flame,
+  Target,
+  Zap,
+} from "lucide-react";
 import { motion } from "motion/react";
 
 const DIFFICULTY_STYLES: Record<string, { pill: string; label: string }> = {
@@ -103,32 +110,50 @@ export default function WorkoutCategory() {
               <Link
                 to="/workouts/$category/$exercise"
                 params={{ category: cat.id, exercise: ex.id }}
-                className="card-elevated rounded-2xl p-4 flex items-start gap-3 block transition-smooth active:scale-[0.98]"
+                className="card-elevated rounded-2xl flex items-stretch overflow-hidden block transition-smooth active:scale-[0.98]"
                 data-ocid={`exercise-${ex.id}`}
               >
-                {/* Number badge */}
-                <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="text-primary font-display font-bold text-sm">
-                    {i + 1}
-                  </span>
-                </div>
+                {/* Thumbnail */}
+                {ex.photoUrl && (
+                  <div className="w-20 shrink-0 relative overflow-hidden">
+                    <img
+                      src={ex.photoUrl}
+                      alt={ex.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/30" />
+                  </div>
+                )}
 
-                <div className="flex-1 min-w-0">
+                {/* Content */}
+                <div className="flex-1 min-w-0 p-3.5">
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-display font-bold text-sm text-foreground leading-tight">
-                      {ex.name}
-                    </h3>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className="w-5 h-5 rounded-md bg-primary/15 flex items-center justify-center shrink-0">
+                          <span className="text-primary font-display font-bold text-xs">
+                            {i + 1}
+                          </span>
+                        </span>
+                        <h3 className="font-display font-bold text-sm text-foreground leading-tight truncate">
+                          {ex.name}
+                        </h3>
+                      </div>
+
+                      {ex.nameHindi && (
+                        <p className="text-muted-foreground text-xs ml-7 leading-none mb-1.5">
+                          {ex.nameHindi}
+                        </p>
+                      )}
+                    </div>
                     <ChevronRight
                       size={15}
                       className="text-muted-foreground shrink-0 mt-0.5"
                     />
                   </div>
 
-                  <p className="text-muted-foreground text-xs mt-1 leading-snug line-clamp-2">
-                    {ex.description}
-                  </p>
-
-                  <div className="flex items-center gap-2 mt-2.5 flex-wrap">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <span
                       className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${diffStyle.pill}`}
                     >
@@ -142,20 +167,29 @@ export default function WorkoutCategory() {
                     </span>
                   </div>
 
-                  {/* Sets & reps preview */}
-                  {(ex.sets || ex.reps) && (
-                    <div className="flex gap-3 mt-2.5">
-                      {ex.sets && (
-                        <span className="text-xs text-primary font-semibold">
-                          {ex.sets} sets
-                        </span>
-                      )}
-                      {ex.reps && (
-                        <span className="text-xs text-muted-foreground">
-                          · {ex.reps} reps
-                        </span>
-                      )}
+                  {/* Duration / sets preview */}
+                  {ex.duration ? (
+                    <div className="flex items-center gap-1.5 mt-2">
+                      <Clock size={11} className="text-primary shrink-0" />
+                      <span className="text-xs text-primary font-semibold">
+                        {ex.duration}
+                      </span>
                     </div>
+                  ) : (
+                    (ex.sets || ex.reps) && (
+                      <div className="flex gap-2 mt-2">
+                        {ex.sets && (
+                          <span className="text-xs text-primary font-semibold">
+                            {ex.sets} sets
+                          </span>
+                        )}
+                        {ex.reps && (
+                          <span className="text-xs text-muted-foreground">
+                            · {ex.reps} reps
+                          </span>
+                        )}
+                      </div>
+                    )
                   )}
                 </div>
               </Link>

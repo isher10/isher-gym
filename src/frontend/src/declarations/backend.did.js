@@ -8,6 +8,31 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const BmiEntry = IDL.Record({
+  'id' : IDL.Nat,
+  'bmi' : IDL.Float64,
+  'weight' : IDL.Float64,
+  'height' : IDL.Float64,
+  'date' : IDL.Text,
+  'category' : IDL.Text,
+});
+export const ChallengeTemplate = IDL.Record({
+  'id' : IDL.Nat,
+  'durationDays' : IDL.Nat,
+  'goal' : IDL.Text,
+  'difficulty' : IDL.Text,
+  'name' : IDL.Text,
+  'exercises' : IDL.Vec(IDL.Text),
+  'description' : IDL.Text,
+});
+export const GamificationProfile = IDL.Record({
+  'totalChallengesCompleted' : IDL.Nat,
+  'badges' : IDL.Vec(IDL.Text),
+  'lastActivityDate' : IDL.Text,
+  'totalWorkoutsLogged' : IDL.Nat,
+  'level' : IDL.Nat,
+  'points' : IDL.Nat,
+});
 export const ProgressEntry = IDL.Record({
   'id' : IDL.Nat,
   'weight' : IDL.Float64,
@@ -15,15 +40,78 @@ export const ProgressEntry = IDL.Record({
   'notes' : IDL.Text,
   'workoutsCompleted' : IDL.Nat,
 });
+export const UserChallenge = IDL.Record({
+  'id' : IDL.Nat,
+  'templateId' : IDL.Nat,
+  'completed' : IDL.Bool,
+  'badgeEarned' : IDL.Bool,
+  'currentDay' : IDL.Nat,
+  'startDate' : IDL.Text,
+});
+export const ReminderSettings = IDL.Record({
+  'time' : IDL.Text,
+  'enabled' : IDL.Bool,
+  'restDays' : IDL.Vec(IDL.Nat),
+});
+export const FeedbackEntry = IDL.Record({
+  'id' : IDL.Nat,
+  'date' : IDL.Text,
+  'name' : IDL.Text,
+  'photoUrl' : IDL.Text,
+  'message' : IDL.Text,
+});
 
 export const idlService = IDL.Service({
+  'addBmiEntry' : IDL.Func(
+      [IDL.Float64, IDL.Float64, IDL.Text],
+      [BmiEntry],
+      [],
+    ),
+  'addChallengeTemplate' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Nat, IDL.Text, IDL.Text, IDL.Vec(IDL.Text)],
+      [ChallengeTemplate],
+      [],
+    ),
+  'addFeedback' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+      [IDL.Nat],
+      [],
+    ),
+  'addPoints' : IDL.Func([IDL.Nat, IDL.Text], [GamificationProfile], []),
   'addProgress' : IDL.Func(
       [IDL.Float64, IDL.Nat, IDL.Text, IDL.Text],
       [ProgressEntry],
       [],
     ),
+  'addUserChallenge' : IDL.Func([IDL.Nat, IDL.Text], [UserChallenge], []),
+  'deleteBmiEntry' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+  'deleteChallengeTemplate' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+  'deleteFeedback' : IDL.Func([IDL.Nat], [IDL.Bool], []),
   'deleteProgress' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+  'deleteUserChallenge' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+  'getGamificationProfile' : IDL.Func([], [GamificationProfile], ['query']),
+  'getReminderSettings' : IDL.Func([], [IDL.Opt(ReminderSettings)], ['query']),
+  'listBmiEntries' : IDL.Func([], [IDL.Vec(BmiEntry)], ['query']),
+  'listChallengeTemplates' : IDL.Func(
+      [],
+      [IDL.Vec(ChallengeTemplate)],
+      ['query'],
+    ),
+  'listFeedback' : IDL.Func([], [IDL.Vec(FeedbackEntry)], ['query']),
   'listProgress' : IDL.Func([], [IDL.Vec(ProgressEntry)], ['query']),
+  'listUserChallenges' : IDL.Func([], [IDL.Vec(UserChallenge)], ['query']),
+  'resetGamification' : IDL.Func([], [], []),
+  'saveReminderSettings' : IDL.Func(
+      [IDL.Bool, IDL.Text, IDL.Vec(IDL.Nat)],
+      [ReminderSettings],
+      [],
+    ),
+  'unlockBadge' : IDL.Func([IDL.Text], [IDL.Bool], []),
+  'updateChallengeProgress' : IDL.Func(
+      [IDL.Nat, IDL.Nat, IDL.Bool, IDL.Bool],
+      [IDL.Bool],
+      [],
+    ),
   'updateProgress' : IDL.Func(
       [IDL.Nat, IDL.Float64, IDL.Nat, IDL.Text, IDL.Text],
       [IDL.Bool],
@@ -34,6 +122,31 @@ export const idlService = IDL.Service({
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const BmiEntry = IDL.Record({
+    'id' : IDL.Nat,
+    'bmi' : IDL.Float64,
+    'weight' : IDL.Float64,
+    'height' : IDL.Float64,
+    'date' : IDL.Text,
+    'category' : IDL.Text,
+  });
+  const ChallengeTemplate = IDL.Record({
+    'id' : IDL.Nat,
+    'durationDays' : IDL.Nat,
+    'goal' : IDL.Text,
+    'difficulty' : IDL.Text,
+    'name' : IDL.Text,
+    'exercises' : IDL.Vec(IDL.Text),
+    'description' : IDL.Text,
+  });
+  const GamificationProfile = IDL.Record({
+    'totalChallengesCompleted' : IDL.Nat,
+    'badges' : IDL.Vec(IDL.Text),
+    'lastActivityDate' : IDL.Text,
+    'totalWorkoutsLogged' : IDL.Nat,
+    'level' : IDL.Nat,
+    'points' : IDL.Nat,
+  });
   const ProgressEntry = IDL.Record({
     'id' : IDL.Nat,
     'weight' : IDL.Float64,
@@ -41,15 +154,82 @@ export const idlFactory = ({ IDL }) => {
     'notes' : IDL.Text,
     'workoutsCompleted' : IDL.Nat,
   });
+  const UserChallenge = IDL.Record({
+    'id' : IDL.Nat,
+    'templateId' : IDL.Nat,
+    'completed' : IDL.Bool,
+    'badgeEarned' : IDL.Bool,
+    'currentDay' : IDL.Nat,
+    'startDate' : IDL.Text,
+  });
+  const ReminderSettings = IDL.Record({
+    'time' : IDL.Text,
+    'enabled' : IDL.Bool,
+    'restDays' : IDL.Vec(IDL.Nat),
+  });
+  const FeedbackEntry = IDL.Record({
+    'id' : IDL.Nat,
+    'date' : IDL.Text,
+    'name' : IDL.Text,
+    'photoUrl' : IDL.Text,
+    'message' : IDL.Text,
+  });
   
   return IDL.Service({
+    'addBmiEntry' : IDL.Func(
+        [IDL.Float64, IDL.Float64, IDL.Text],
+        [BmiEntry],
+        [],
+      ),
+    'addChallengeTemplate' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Nat, IDL.Text, IDL.Text, IDL.Vec(IDL.Text)],
+        [ChallengeTemplate],
+        [],
+      ),
+    'addFeedback' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Nat],
+        [],
+      ),
+    'addPoints' : IDL.Func([IDL.Nat, IDL.Text], [GamificationProfile], []),
     'addProgress' : IDL.Func(
         [IDL.Float64, IDL.Nat, IDL.Text, IDL.Text],
         [ProgressEntry],
         [],
       ),
+    'addUserChallenge' : IDL.Func([IDL.Nat, IDL.Text], [UserChallenge], []),
+    'deleteBmiEntry' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+    'deleteChallengeTemplate' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+    'deleteFeedback' : IDL.Func([IDL.Nat], [IDL.Bool], []),
     'deleteProgress' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+    'deleteUserChallenge' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+    'getGamificationProfile' : IDL.Func([], [GamificationProfile], ['query']),
+    'getReminderSettings' : IDL.Func(
+        [],
+        [IDL.Opt(ReminderSettings)],
+        ['query'],
+      ),
+    'listBmiEntries' : IDL.Func([], [IDL.Vec(BmiEntry)], ['query']),
+    'listChallengeTemplates' : IDL.Func(
+        [],
+        [IDL.Vec(ChallengeTemplate)],
+        ['query'],
+      ),
+    'listFeedback' : IDL.Func([], [IDL.Vec(FeedbackEntry)], ['query']),
     'listProgress' : IDL.Func([], [IDL.Vec(ProgressEntry)], ['query']),
+    'listUserChallenges' : IDL.Func([], [IDL.Vec(UserChallenge)], ['query']),
+    'resetGamification' : IDL.Func([], [], []),
+    'saveReminderSettings' : IDL.Func(
+        [IDL.Bool, IDL.Text, IDL.Vec(IDL.Nat)],
+        [ReminderSettings],
+        [],
+      ),
+    'unlockBadge' : IDL.Func([IDL.Text], [IDL.Bool], []),
+    'updateChallengeProgress' : IDL.Func(
+        [IDL.Nat, IDL.Nat, IDL.Bool, IDL.Bool],
+        [IDL.Bool],
+        [],
+      ),
     'updateProgress' : IDL.Func(
         [IDL.Nat, IDL.Float64, IDL.Nat, IDL.Text, IDL.Text],
         [IDL.Bool],

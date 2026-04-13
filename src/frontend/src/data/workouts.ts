@@ -1,5 +1,18 @@
 import type { WorkoutCategory } from "@/types";
 
+const CHEST_PHOTO =
+  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80";
+const BACK_PHOTO =
+  "https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&q=80";
+const LEGS_PHOTO =
+  "https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=600&q=80";
+const ARMS_PHOTO =
+  "https://images.unsplash.com/photo-1581009137042-c552e485697a?w=600&q=80";
+const SHOULDERS_PHOTO =
+  "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=80";
+const ABS_PHOTO =
+  "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80";
+
 export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
   {
     id: "chest",
@@ -10,9 +23,13 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
       {
         id: "bench-press",
         name: "Barbell Bench Press",
+        nameHindi: "बारबेल बेंच प्रेस",
         targetMuscle: "Pectoralis Major",
+        targetMuscleHindi: "सीने की मुख्य मांसपेशी",
         description:
           "The king of chest exercises, perfect for building raw chest strength and mass. It recruits the entire chest with heavy overload.",
+        descriptionHindi:
+          "छाती की सबसे प्रभावशाली एक्सरसाइज जो भारी वजन से सीने को मजबूत बनाती है। यह पूरे सीने की मांसपेशियों को सक्रिय करती है।",
         steps: [
           "Lie flat on the bench with eyes directly under the barbell.",
           "Grip the bar slightly wider than shoulder width with a full grip.",
@@ -22,6 +39,15 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Press back up explosively, exhaling as the bar rises.",
           "Lock out at the top and repeat for your desired reps.",
         ],
+        stepsHindi: [
+          "बेंच पर सीधे लेट जाएं, आंखें बारबेल के ठीक नीचे हों।",
+          "कंधों से थोड़ा चौड़ा पकड़ बनाएं, पूरी मुट्ठी बंद रखें।",
+          "बार को रैक से उठाएं और सीने के ऊपर सीधे पकड़ें।",
+          "गहरी सांस लें, कोर मजबूत करें और बार को सीने के मध्य तक लाएं।",
+          "बार को हल्के से सीने से छुएं — उछालें नहीं।",
+          "सांस छोड़ते हुए बार को ऊपर जोर से दबाएं।",
+          "ऊपर हाथ सीधे करें और दोहराएं।",
+        ],
         benefits: [
           "strength:Builds chest mass and raw pushing strength",
           "muscle-gain:Engages triceps, shoulders and pecs simultaneously",
@@ -30,19 +56,34 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "4",
         reps: "6–10",
+        duration: "4 sets × 6–10 reps",
+        whenToDoIt: "Morning workout, 3–4 times per week. Best on chest day.",
+        whenToDoItHindi: "सुबह की वर्कआउट, हफ्ते में 3–4 बार। छाती के दिन करें।",
+        photoUrl: CHEST_PHOTO,
       },
       {
         id: "incline-dumbbell-press",
         name: "Incline Dumbbell Press",
+        nameHindi: "इनक्लाइन डम्बल प्रेस",
         targetMuscle: "Upper Pectoralis Major",
+        targetMuscleHindi: "ऊपरी सीने की मांसपेशी",
         description:
           "Targets the upper chest for a full, rounded look. Dumbbells allow a greater range of motion than a barbell.",
+        descriptionHindi:
+          "ऊपरी सीने को टारगेट करता है जिससे सीना भरा-भरा और गोल दिखता है। डम्बल बारबेल से ज्यादा मूवमेंट देते हैं।",
         steps: [
           "Set an adjustable bench to 30–45 degrees incline.",
           "Sit back holding dumbbells at shoulder height, palms facing forward.",
           "Press the dumbbells up and slightly inward until arms are fully extended.",
           "Slowly lower back to the start with controlled descent.",
           "Keep shoulder blades pinched together throughout the movement.",
+        ],
+        stepsHindi: [
+          "बेंच को 30–45 डिग्री पर सेट करें।",
+          "डम्बल कंधे की ऊंचाई पर पकड़ें, हथेलियां आगे की ओर।",
+          "डम्बल को ऊपर और थोड़ा अंदर की ओर प्रेस करें।",
+          "धीरे-धीरे वापस नीचे लाएं।",
+          "पूरे मूवमेंट में कंधे के ब्लेड को पास रखें।",
         ],
         benefits: [
           "muscle-gain:Builds upper chest fullness and definition",
@@ -52,13 +93,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "3",
         reps: "10–12",
+        duration: "3 sets × 10–12 reps",
+        whenToDoIt: "After bench press on chest day, 3 times per week.",
+        whenToDoItHindi: "छाती के दिन बेंच प्रेस के बाद, हफ्ते में 3 बार।",
+        photoUrl: CHEST_PHOTO,
       },
       {
         id: "push-up",
         name: "Push-Up",
+        nameHindi: "पुश-अप",
         targetMuscle: "Pectoralis Major & Minor",
+        targetMuscleHindi: "सीने की दोनों मांसपेशियां",
         description:
           "A foundational bodyweight exercise great for beginners and warm-ups. Builds chest, triceps and core simultaneously.",
+        descriptionHindi:
+          "शुरुआती लोगों के लिए बेहतरीन बॉडीवेट एक्सरसाइज। सीना, ट्राइसेप्स और कोर एक साथ मजबूत बनाती है।",
         steps: [
           "Start in a high plank with hands slightly wider than shoulders.",
           "Keep your body in a straight line from head to heels — engage your core.",
@@ -66,6 +115,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Stop when your chest is about 1 inch from the ground.",
           "Press back up until arms are fully extended.",
           "Breathe in on the way down, out on the way up.",
+        ],
+        stepsHindi: [
+          "हाथों को कंधों से थोड़ा चौड़ा रखकर हाई प्लैंक में आएं।",
+          "सिर से एड़ी तक शरीर सीधी लाइन में रखें, कोर टाइट करें।",
+          "कोहनियां मोड़ते हुए सीना जमीन की तरफ लाएं।",
+          "जमीन से लगभग 1 इंच दूर रुकें।",
+          "वापस ऊपर हाथ सीधे करें।",
+          "नीचे जाते सांस लें, ऊपर जाते छोड़ें।",
         ],
         benefits: [
           "endurance:No equipment needed — do it anywhere",
@@ -75,13 +132,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "12–20",
+        duration: "3 sets × 12–20 reps",
+        whenToDoIt: "Daily or 4–5 times per week, morning or evening.",
+        whenToDoItHindi: "रोज या हफ्ते में 4–5 बार, सुबह या शाम कभी भी।",
+        photoUrl: CHEST_PHOTO,
       },
       {
         id: "cable-crossover",
         name: "Cable Crossover",
+        nameHindi: "केबल क्रॉसओवर",
         targetMuscle: "Pectoralis Major (Inner)",
+        targetMuscleHindi: "सीने की अंदरूनी मांसपेशी",
         description:
           "Isolates the inner chest with constant cable tension throughout the movement.",
+        descriptionHindi:
+          "केबल की निरंतर टेंशन से सीने के बीच वाले हिस्से को अलग से काम करती है। सीने की बनावट को शार्प करती है।",
         steps: [
           "Set cable pulleys to chest height on both sides.",
           "Stand in the center, grab handles and step forward slightly.",
@@ -89,6 +154,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Squeeze your chest hard at the peak contraction.",
           "Slowly return to the starting position with control.",
           "Keep your torso upright and stable throughout.",
+        ],
+        stepsHindi: [
+          "दोनों तरफ के केबल पुली को सीने की ऊंचाई पर सेट करें।",
+          "बीच में खड़े हों, हैंडल पकड़ें और थोड़ा आगे झुकें।",
+          "कोहनियां थोड़ी मुड़ी रखकर हाथों को सीने के सामने मिलाएं।",
+          "चोटी पर सीने को जोर से दबाएं।",
+          "धीरे-धीरे शुरुआती स्थिति में वापस आएं।",
+          "पूरे समय धड़ सीधा और स्थिर रखें।",
         ],
         benefits: [
           "muscle-gain:Constant tension throughout the full range of motion",
@@ -98,19 +171,35 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "12–15",
+        duration: "3 sets × 12–15 reps",
+        whenToDoIt:
+          "At the end of chest day as a finisher, 2–3 times per week.",
+        whenToDoItHindi: "छाती के दिन अंत में फिनिशर के रूप में, हफ्ते में 2–3 बार।",
+        photoUrl: CHEST_PHOTO,
       },
       {
         id: "dumbbell-flyes",
         name: "Dumbbell Flyes",
+        nameHindi: "डम्बल फ्लाइज़",
         targetMuscle: "Pectoralis Major (Stretch)",
+        targetMuscleHindi: "सीने की खिंचाव वाली मांसपेशी",
         description:
           "Isolation movement that stretches and contracts the chest through a wide arc for maximum muscle fiber recruitment.",
+        descriptionHindi:
+          "यह एक्सरसाइज सीने को चौड़े आर्क में खींचती और सिकोड़ती है, जिससे ज्यादा मांसपेशियां काम करती हैं।",
         steps: [
           "Lie on a flat bench holding dumbbells above your chest, palms facing each other.",
           "Slightly bend elbows — maintain this bend throughout.",
           "Lower the dumbbells in a wide arc, feeling a deep chest stretch.",
           "Stop when upper arms are parallel to the floor.",
           "Squeeze the chest to bring the dumbbells back up in the same arc.",
+        ],
+        stepsHindi: [
+          "फ्लैट बेंच पर लेटें, डम्बल सीने के ऊपर, हथेलियां एक-दूसरे की तरफ।",
+          "कोहनियां थोड़ी मुड़ी रखें, पूरे मूवमेंट में ऐसे ही रखें।",
+          "डम्बल को चौड़े आर्क में नीचे लाएं, सीने में खिंचाव महसूस करें।",
+          "जब ऊपरी बांहें फर्श के समानांतर हों तब रुकें।",
+          "सीने को सिकोड़ते हुए डम्बल को वापस ऊपर लाएं।",
         ],
         benefits: [
           "muscle-gain:Isolates the chest for maximum stretch and contraction",
@@ -120,6 +209,10 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "3",
         reps: "12–15",
+        duration: "3 sets × 12–15 reps",
+        whenToDoIt: "On chest day after compound lifts, 2–3 times per week.",
+        whenToDoItHindi: "छाती के दिन कम्पाउंड एक्सरसाइज के बाद, हफ्ते में 2–3 बार।",
+        photoUrl: CHEST_PHOTO,
       },
     ],
   },
@@ -132,9 +225,13 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
       {
         id: "deadlift",
         name: "Deadlift",
+        nameHindi: "डेडलिफ्ट",
         targetMuscle: "Entire Posterior Chain",
+        targetMuscleHindi: "पूरी पिछली मांसपेशियां",
         description:
           "The ultimate full-body compound movement. Works every muscle from your traps to your calves, making it the most effective mass builder.",
+        descriptionHindi:
+          "यह पूरे शरीर की सबसे ताकतवर एक्सरसाइज है। ट्रैप्स से पिंडली तक हर मांसपेशी काम करती है, इसीलिए यह सबसे प्रभावी मास बिल्डर है।",
         steps: [
           "Stand with feet hip-width apart, barbell over mid-foot.",
           "Hinge at hips and bend knees until shins touch the bar.",
@@ -144,6 +241,15 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Keep the bar dragging up your shins and thighs.",
           "Lock out at the top: hips fully extended, shoulders back, chin tucked.",
         ],
+        stepsHindi: [
+          "पैरों को कूल्हे-चौड़ाई पर रखें, बारबेल पैर के बीच में हो।",
+          "कूल्हे मोड़ें और घुटने झुकाएं जब तक पिंडली बार को न छुए।",
+          "घुटनों के बाहर से बार पकड़ें, दोनों हाथ आगे या मिक्स ग्रिप।",
+          "बड़ी सांस लें, पूरे कोर को दीवार की तरह कस लें।",
+          "'लेग प्रेस' की तरह फर्श को नीचे धकेलते हुए खींचें।",
+          "बार पिंडली और जांघ को छूता हुआ ऊपर जाए।",
+          "ऊपर: कूल्हे पूरे सीधे, कंधे पीछे, ठुड्डी अंदर।",
+        ],
         benefits: [
           "strength:The most effective full-body strength builder",
           "muscle-gain:Stimulates growth hormones and testosterone release",
@@ -152,13 +258,22 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Advanced",
         sets: "4",
         reps: "3–6",
+        duration: "4 sets × 3–6 reps",
+        whenToDoIt:
+          "Back day, 1–2 times per week. Best done fresh at the start.",
+        whenToDoItHindi: "पीठ के दिन, हफ्ते में 1–2 बार। शुरुआत में ताजे रहते करें।",
+        photoUrl: BACK_PHOTO,
       },
       {
         id: "pull-up",
         name: "Pull-Up",
+        nameHindi: "पुल-अप",
         targetMuscle: "Latissimus Dorsi",
+        targetMuscleHindi: "पीठ की चौड़ी मांसपेशी (लैट्स)",
         description:
           "The best bodyweight lat exercise for building the V-taper back. Challenges both strength and body composition.",
+        descriptionHindi:
+          "V-आकार की पीठ बनाने के लिए सबसे बेहतरीन बॉडीवेट एक्सरसाइज। ताकत और शरीर की बनावट दोनों को चुनौती देती है।",
         steps: [
           "Hang from a pull-up bar with palms facing away, wider than shoulder width.",
           "Depress and retract your shoulder blades to initiate the pull.",
@@ -166,6 +281,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Continue until your chin clears the top of the bar.",
           "Lower yourself with control to a full dead hang.",
           "Avoid swinging — control every rep.",
+        ],
+        stepsHindi: [
+          "पुल-अप बार पर कंधों से चौड़ा पकड़ें, हथेलियां बाहर की ओर।",
+          "कंधे के ब्लेड नीचे और पीछे खींचें, खिंचाव शुरू करें।",
+          "सीने को बार की तरफ खींचें, कोहनियां नेतृत्व करें।",
+          "जब तक ठुड्डी बार के ऊपर न आए।",
+          "धीरे-धीरे पूरे हैंग तक नीचे आएं।",
+          "झुलाएं नहीं — हर रेप को कंट्रोल में करें।",
         ],
         benefits: [
           "muscle-gain:Builds lat width for an impressive V-taper back",
@@ -175,13 +298,23 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "4",
         reps: "6–12",
+        duration: "4 sets × 6–12 reps",
+        whenToDoIt:
+          "Back day, 3 times per week. Great as first or second exercise.",
+        whenToDoItHindi:
+          "पीठ के दिन, हफ्ते में 3 बार। पहली या दूसरी एक्सरसाइज के रूप में।",
+        photoUrl: BACK_PHOTO,
       },
       {
         id: "bent-over-row",
         name: "Barbell Bent-Over Row",
+        nameHindi: "बारबेल बेंट-ओवर रो",
         targetMuscle: "Latissimus Dorsi & Rhomboids",
+        targetMuscleHindi: "लैट्स और रॉम्बॉइड मांसपेशियां",
         description:
           "Compound pulling movement that builds back thickness and width simultaneously.",
+        descriptionHindi:
+          "पीठ की मोटाई और चौड़ाई दोनों एक साथ बढ़ाने वाली कम्पाउंड एक्सरसाइज।",
         steps: [
           "Stand with feet shoulder-width, bend forward about 45 degrees.",
           "Grip the barbell slightly wider than shoulder width, arms hanging.",
@@ -189,6 +322,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Row the bar to your lower chest or upper abdomen.",
           "Squeeze your shoulder blades together at the top.",
           "Lower the bar with control to full arm extension.",
+        ],
+        stepsHindi: [
+          "पैर कंधे-चौड़ाई पर, 45 डिग्री आगे झुकें।",
+          "बारबेल को कंधों से थोड़ा चौड़ा पकड़ें।",
+          "कोर मजबूत करें, पीठ पूरे समय सीधी रखें।",
+          "बार को निचले सीने या ऊपरी पेट तक खींचें।",
+          "ऊपर कंधे के ब्लेड को पास लाएं।",
+          "बाहों को पूरी तरह फैलाते हुए बार नीचे लाएं।",
         ],
         benefits: [
           "muscle-gain:Builds overall back thickness and density",
@@ -198,13 +339,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "4",
         reps: "8–12",
+        duration: "4 sets × 8–12 reps",
+        whenToDoIt: "Back day after deadlifts, 3 times per week.",
+        whenToDoItHindi: "पीठ के दिन डेडलिफ्ट के बाद, हफ्ते में 3 बार।",
+        photoUrl: BACK_PHOTO,
       },
       {
         id: "seated-row",
         name: "Seated Cable Row",
+        nameHindi: "सीटेड केबल रो",
         targetMuscle: "Rhomboids & Middle Trapezius",
+        targetMuscleHindi: "रॉम्बॉइड और मध्य ट्रैपेज़ियस",
         description:
           "Builds back thickness and improves posture by targeting the mid-back with controlled resistance.",
+        descriptionHindi:
+          "नियंत्रित प्रतिरोध से मध्य पीठ को टारगेट करके मोटाई बढ़ाती है और पोस्चर सुधारती है।",
         steps: [
           "Sit at a cable row station with a slight forward lean to start.",
           "Grip the V-bar handle, keep feet flat on the platform.",
@@ -212,6 +361,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Squeeze shoulder blades together hard at peak contraction.",
           "Slowly return to the start, letting shoulder blades spread forward.",
           "Maintain a neutral spine throughout — no excessive rounding.",
+        ],
+        stepsHindi: [
+          "केबल रो स्टेशन पर बैठें, थोड़ा आगे झुककर शुरू करें।",
+          "V-बार पकड़ें, पैर प्लेटफॉर्म पर सपाट रखें।",
+          "हैंडल को निचले स्टर्नम तक खींचें, कोहनियां आगे रहें।",
+          "चोटी पर कंधे के ब्लेड जोर से पास लाएं।",
+          "धीरे-धीरे शुरुआती स्थिति में वापस आएं।",
+          "पूरे समय रीढ़ तटस्थ रखें — बहुत झुकें नहीं।",
         ],
         benefits: [
           "muscle-gain:Targets mid-back for depth and thickness",
@@ -221,13 +378,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "10–14",
+        duration: "3 sets × 10–14 reps",
+        whenToDoIt: "Back day, 3 times per week. Safe for all fitness levels.",
+        whenToDoItHindi: "पीठ के दिन, हफ्ते में 3 बार। सभी स्तरों के लिए सुरक्षित।",
+        photoUrl: BACK_PHOTO,
       },
       {
         id: "lat-pulldown",
         name: "Lat Pulldown",
+        nameHindi: "लैट पुलडाउन",
         targetMuscle: "Latissimus Dorsi",
+        targetMuscleHindi: "पीठ की चौड़ी मांसपेशी (लैट्स)",
         description:
           "Machine-based lat exercise, perfect for building the lats before advancing to pull-ups.",
+        descriptionHindi:
+          "मशीन पर लैट्स बनाने की बेहतरीन एक्सरसाइज, पुल-अप से पहले इसे करना सीखें।",
         steps: [
           "Sit at a lat pulldown station with thighs secured under the pad.",
           "Grip the bar wider than shoulder width, palms facing away.",
@@ -235,6 +400,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Lead with your elbows and squeeze your lats at the bottom.",
           "Control the bar back up until arms are fully extended.",
           "Avoid shrugging shoulders — keep them packed down.",
+        ],
+        stepsHindi: [
+          "लैट पुलडाउन स्टेशन पर बैठें, जांघें पैड के नीचे सुरक्षित करें।",
+          "कंधों से चौड़ा पकड़ें, हथेलियां बाहर की ओर।",
+          "थोड़ा पीछे झुकें और बार को ऊपरी सीने तक खींचें।",
+          "कोहनियां नेतृत्व करें, नीचे लैट्स को दबाएं।",
+          "बाहों को पूरी तरह फैलाते हुए बार वापस ऊपर जाने दें।",
+          "कंधे न उठाएं — उन्हें नीचे दबाए रखें।",
         ],
         benefits: [
           "muscle-gain:Great for building lat width for beginners",
@@ -244,6 +417,11 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "10–14",
+        duration: "3 sets × 10–14 reps",
+        whenToDoIt:
+          "Back day, 3 times per week. Ideal for building pull-up strength.",
+        whenToDoItHindi: "पीठ के दिन, हफ्ते में 3 बार। पुल-अप की ताकत बनाने के लिए।",
+        photoUrl: BACK_PHOTO,
       },
     ],
   },
@@ -256,9 +434,13 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
       {
         id: "barbell-squat",
         name: "Barbell Back Squat",
+        nameHindi: "बारबेल बैक स्क्वाट",
         targetMuscle: "Quadriceps, Glutes & Hamstrings",
+        targetMuscleHindi: "क्वाड्रिसेप्स, ग्लूट्स और हैमस्ट्रिंग",
         description:
           "The king of all exercises for lower body strength and muscle mass. No leg exercise builds size and strength like the squat.",
+        descriptionHindi:
+          "निचले शरीर की ताकत और मांसपेशियों के लिए सभी एक्सरसाइज का राजा। स्क्वाट जितना कोई नहीं बनाता।",
         steps: [
           "Set the barbell on your upper traps (high bar) or rear delts (low bar).",
           "Stand with feet shoulder-width apart, toes slightly flared.",
@@ -268,6 +450,15 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Explode back up to standing, keeping chest tall throughout.",
           "Breathe in on descent, out on ascent.",
         ],
+        stepsHindi: [
+          "बारबेल को ऊपरी ट्रैप्स (हाई बार) या रियर डेल्ट्स (लो बार) पर रखें।",
+          "पैर कंधे-चौड़ाई पर, पंजे थोड़े बाहर।",
+          "कोर कस लें और बार को रैक से उठाएं।",
+          "घुटने बाहर धकेलें और नीचे बैठें, कूल्हे समानांतर से नीचे।",
+          "पूरे पैर से उठें — एड़ियां उठने न दें।",
+          "सीना ऊंचा रखते हुए जोर से खड़े हों।",
+          "नीचे जाते सांस लें, ऊपर आते छोड़ें।",
+        ],
         benefits: [
           "muscle-gain:Builds leg and glute mass more than any other exercise",
           "strength:Increases core stability and spinal integrity",
@@ -276,13 +467,22 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "4",
         reps: "6–10",
+        duration: "4 sets × 6–10 reps",
+        whenToDoIt:
+          "Leg day, 2 times per week. Best done early in the session.",
+        whenToDoItHindi: "पैर के दिन, हफ्ते में 2 बार। सेशन की शुरुआत में करें।",
+        photoUrl: LEGS_PHOTO,
       },
       {
         id: "romanian-deadlift",
         name: "Romanian Deadlift",
+        nameHindi: "रोमानियन डेडलिफ्ट",
         targetMuscle: "Hamstrings & Glutes",
+        targetMuscleHindi: "हैमस्ट्रिंग और ग्लूट्स",
         description:
           "Hip hinge movement that deeply stretches and strengthens the hamstrings and glutes under load.",
+        descriptionHindi:
+          "कूल्हे के कब्जे वाला मूवमेंट जो हैमस्ट्रिंग और ग्लूट्स को वजन के साथ गहराई से खींचता और मजबूत बनाता है।",
         steps: [
           "Hold a barbell at hip height with a shoulder-width grip.",
           "Stand with feet hip-width apart, slight bend in knees.",
@@ -290,6 +490,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Keep the bar close to your legs — it should drag down your thighs.",
           "Lower until you feel a strong hamstring stretch (usually mid-shin level).",
           "Drive hips forward to return to standing.",
+        ],
+        stepsHindi: [
+          "बारबेल को कूल्हे की ऊंचाई पर कंधे-चौड़ाई से पकड़ें।",
+          "पैर कूल्हे-चौड़ाई पर, घुटनों में हल्की मोड़।",
+          "कूल्हे पीछे धकेलते हुए बार नीचे लाएं।",
+          "बार पैरों के करीब रखें — जांघों को छूते हुए नीचे।",
+          "जब तक हैमस्ट्रिंग में तेज खिंचाव न महसूस हो।",
+          "कूल्हे आगे लाते हुए खड़े हों।",
         ],
         benefits: [
           "muscle-gain:Builds hamstring and glute size and strength",
@@ -299,13 +507,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "3",
         reps: "8–12",
+        duration: "3 sets × 8–12 reps",
+        whenToDoIt: "Leg day after squats, 2–3 times per week.",
+        whenToDoItHindi: "पैर के दिन स्क्वाट के बाद, हफ्ते में 2–3 बार।",
+        photoUrl: LEGS_PHOTO,
       },
       {
         id: "lunge",
         name: "Walking Lunge",
+        nameHindi: "वॉकिंग लंज",
         targetMuscle: "Quadriceps & Glutes",
+        targetMuscleHindi: "क्वाड्रिसेप्स और ग्लूट्स",
         description:
           "Unilateral movement that improves balance, coordination, and corrects left-right muscle imbalances.",
+        descriptionHindi:
+          "एकतरफा मूवमेंट जो संतुलन, समन्वय बढ़ाता है और बाएं-दाएं की मांसपेशियों का अंतर ठीक करता है।",
         steps: [
           "Stand tall, feet together, holding dumbbells at your sides.",
           "Step forward with one leg — big enough stride to be comfortable.",
@@ -313,6 +529,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Keep your torso upright — don't lean forward excessively.",
           "Push off the front foot and step through with the back leg.",
           "Continue alternating legs for the desired distance or reps.",
+        ],
+        stepsHindi: [
+          "सीधे खड़े हों, पैर पास, डम्बल बगल में।",
+          "एक पैर आगे बढ़ाएं — आरामदायक कदम।",
+          "पिछला घुटना फर्श की ओर झुकाएं जब तक अगली जांघ समानांतर हो।",
+          "धड़ सीधा रखें — बहुत आगे न झुकें।",
+          "अगले पैर से धक्का दें और पिछला पैर आगे लाएं।",
+          "दोनों पैरों को बारी-बारी से आगे बढ़ाएं।",
         ],
         benefits: [
           "endurance:Improves balance and functional movement patterns",
@@ -322,13 +546,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "12 each leg",
+        duration: "3 sets × 12 reps per leg",
+        whenToDoIt: "Leg day, 3 times per week. Good for warm-up or finisher.",
+        whenToDoItHindi: "पैर के दिन, हफ्ते में 3 बार। वार्म-अप या फिनिशर के लिए।",
+        photoUrl: LEGS_PHOTO,
       },
       {
         id: "leg-press",
         name: "Leg Press",
+        nameHindi: "लेग प्रेस",
         targetMuscle: "Quadriceps & Glutes",
+        targetMuscleHindi: "क्वाड्रिसेप्स और ग्लूट्स",
         description:
           "Machine-based compound movement allowing heavier loads than squats without spinal loading.",
+        descriptionHindi:
+          "मशीन पर रीढ़ पर बिना बोझ डाले स्क्वाट से ज्यादा भारी वजन उठाने की अनुमति देती है।",
         steps: [
           "Sit in the leg press machine with back and head against the pad.",
           "Place feet shoulder-width apart in the middle of the platform.",
@@ -336,6 +568,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Descend until knees reach about 90 degrees.",
           "Press back up through your heels — don't lock knees at the top.",
           "Breathe in on descent, out as you press.",
+        ],
+        stepsHindi: [
+          "लेग प्रेस मशीन में बैठें, पीठ और सिर पैड पर टिकाएं।",
+          "पैर प्लेटफॉर्म के बीच में कंधे-चौड़ाई पर रखें।",
+          "सेफ्टी हैंडल छोड़ें और प्लेटफॉर्म सीने की तरफ नीचे लाएं।",
+          "घुटने लगभग 90 डिग्री तक झुकाएं।",
+          "एड़ियों से दबाकर ऊपर जाएं — घुटने ऊपर लॉक न करें।",
+          "नीचे जाते सांस लें, दबाते हुए छोड़ें।",
         ],
         benefits: [
           "muscle-gain:Allows very heavy quad and glute training safely",
@@ -345,13 +585,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "4",
         reps: "10–15",
+        duration: "4 sets × 10–15 reps",
+        whenToDoIt: "Leg day after squats, 2–3 times per week.",
+        whenToDoItHindi: "पैर के दिन स्क्वाट के बाद, हफ्ते में 2–3 बार।",
+        photoUrl: LEGS_PHOTO,
       },
       {
         id: "calf-raise",
         name: "Standing Calf Raise",
+        nameHindi: "स्टैंडिंग कॉफ रेज़",
         targetMuscle: "Gastrocnemius & Soleus",
+        targetMuscleHindi: "पिंडली की मांसपेशियां",
         description:
           "Essential isolation exercise for building thick, defined calves that complete the physique.",
+        descriptionHindi:
+          "मोटी और शार्प पिंडलियां बनाने के लिए जरूरी आइसोलेशन एक्सरसाइज जो शारीरिक बनावट को पूरा करती है।",
         steps: [
           "Stand on the edge of a step or calf raise platform, heels hanging off.",
           "Hold dumbbells or use a machine for added resistance.",
@@ -359,6 +607,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Explode up onto your toes, squeezing the calves hard.",
           "Pause at the top for 1 second before lowering.",
           "Perform reps slowly — most people rush this exercise.",
+        ],
+        stepsHindi: [
+          "सीढ़ी या कॉफ रेज प्लेटफॉर्म के किनारे पर खड़े हों, एड़ियां लटकती हों।",
+          "डम्बल पकड़ें या मशीन का उपयोग करें।",
+          "एड़ियों को जितना हो सके नीचे झुकाएं — गहरा खिंचाव।",
+          "पंजों पर जोर से उठें, पिंडलियों को कस लें।",
+          "ऊपर 1 सेकंड रुकें फिर नीचे लाएं।",
+          "धीरे-धीरे करें — ज्यादातर लोग जल्दी करते हैं।",
         ],
         benefits: [
           "muscle-gain:Builds calf size and definition for complete leg development",
@@ -368,6 +624,10 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "4",
         reps: "15–20",
+        duration: "4 sets × 15–20 reps",
+        whenToDoIt: "End of leg day, 3 times per week. Can also do daily.",
+        whenToDoItHindi: "पैर के दिन के अंत में, हफ्ते में 3 बार। रोज भी कर सकते हैं।",
+        photoUrl: LEGS_PHOTO,
       },
     ],
   },
@@ -380,9 +640,13 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
       {
         id: "barbell-curl",
         name: "Barbell Curl",
+        nameHindi: "बारबेल कर्ल",
         targetMuscle: "Biceps Brachii",
+        targetMuscleHindi: "बाइसेप्स की मांसपेशी",
         description:
           "Classic bicep builder for maximum arm thickness and peak. Allows heavier loading than dumbbell variations.",
+        descriptionHindi:
+          "बाइसेप्स की मोटाई और उभार के लिए क्लासिक एक्सरसाइज। डम्बल से ज्यादा भारी वजन उठा सकते हैं।",
         steps: [
           "Stand with feet shoulder-width apart, holding a barbell with an underhand grip.",
           "Keep your elbows pinned close to your sides — they should not move.",
@@ -390,6 +654,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Squeeze the biceps hard at the top, pause for 1 second.",
           "Lower the bar with control — the descent builds muscle too.",
           "Avoid swinging your back or using momentum.",
+        ],
+        stepsHindi: [
+          "पैर कंधे-चौड़ाई पर, बारबेल को अंडरहैंड ग्रिप से पकड़ें।",
+          "कोहनियां बगल में टिकी रहें — हिलने न दें।",
+          "बार को कंधों की तरफ गोल आर्क में मोड़ें।",
+          "ऊपर बाइसेप्स को जोर से दबाएं, 1 सेकंड रुकें।",
+          "बार को नियंत्रण में नीचे लाएं — नीचे जाते भी मांसपेशी बनती है।",
+          "पीठ न झुलाएं या मोमेंटम का उपयोग न करें।",
         ],
         benefits: [
           "muscle-gain:Maximizes bicep peak and overall arm thickness",
@@ -399,19 +671,35 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "4",
         reps: "8–12",
+        duration: "4 sets × 8–12 reps",
+        whenToDoIt:
+          "Arms day, 2–3 times per week. Best at the start of bicep training.",
+        whenToDoItHindi: "बाहों के दिन, हफ्ते में 2–3 बार। बाइसेप्स ट्रेनिंग की शुरुआत में।",
+        photoUrl: ARMS_PHOTO,
       },
       {
         id: "hammer-curl",
         name: "Hammer Curl",
+        nameHindi: "हैमर कर्ल",
         targetMuscle: "Brachialis & Brachioradialis",
+        targetMuscleHindi: "ब्रैचियालिस और फोरआर्म की मांसपेशी",
         description:
           "Neutral-grip curl that targets the brachialis and forearms for thicker, more complete arms.",
+        descriptionHindi:
+          "तटस्थ पकड़ से ब्रैचियालिस और फोरआर्म को टारगेट करती है, जिससे बाहें मोटी और पूरी दिखती हैं।",
         steps: [
           "Hold dumbbells at your sides with a neutral (hammer) grip, palms facing each other.",
           "Keep elbows stationary at your sides.",
           "Curl both dumbbells up simultaneously, maintaining neutral wrist position.",
           "Squeeze at the top before lowering slowly.",
           "Can also be done alternating arms for better focus.",
+        ],
+        stepsHindi: [
+          "डम्बल को बगल में हैमर ग्रिप से पकड़ें, हथेलियां एक-दूसरे की तरफ।",
+          "कोहनियां बगल में स्थिर रखें।",
+          "दोनों डम्बल एक साथ ऊपर मोड़ें, कलाई की स्थिति तटस्थ रखें।",
+          "ऊपर दबाएं, फिर धीरे नीचे लाएं।",
+          "बेहतर फोकस के लिए बारी-बारी से भी कर सकते हैं।",
         ],
         benefits: [
           "muscle-gain:Builds the brachialis which pushes the bicep up for more peak",
@@ -421,13 +709,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "10–12",
+        duration: "3 sets × 10–12 reps",
+        whenToDoIt: "Arms day after barbell curls, 2–3 times per week.",
+        whenToDoItHindi: "बाहों के दिन बारबेल कर्ल के बाद, हफ्ते में 2–3 बार।",
+        photoUrl: ARMS_PHOTO,
       },
       {
         id: "tricep-dip",
         name: "Tricep Dip",
+        nameHindi: "ट्राइसेप डिप",
         targetMuscle: "Triceps Brachii",
+        targetMuscleHindi: "ट्राइसेप्स की मांसपेशी",
         description:
           "Bodyweight exercise for building thick, horseshoe-shaped triceps. Can be loaded with weight for advanced trainees.",
+        descriptionHindi:
+          "घोड़े की नाल के आकार वाले मोटे ट्राइसेप्स बनाने की बॉडीवेट एक्सरसाइज। एडवांस ट्रेनी वजन जोड़ सकते हैं।",
         steps: [
           "Grip parallel bars at arm's length, body hanging.",
           "Slightly lean forward to target chest, or stay upright to target triceps.",
@@ -435,6 +731,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Press back up to the starting position.",
           "Avoid flaring elbows excessively — keep them at a moderate angle.",
           "Add a dip belt with weight plates for extra resistance.",
+        ],
+        stepsHindi: [
+          "पैरेलल बार को हाथ की लंबाई पर पकड़ें, शरीर लटकता हो।",
+          "सीने के लिए थोड़ा आगे झुकें, ट्राइसेप्स के लिए सीधे रहें।",
+          "कोहनियां मोड़ते हुए शरीर नीचे लाएं जब तक ऊपरी बांहें समानांतर हों।",
+          "वापस शुरुआती स्थिति में दबाएं।",
+          "कोहनियां बहुत बाहर न फैलाएं — मध्यम कोण पर रखें।",
+          "अतिरिक्त प्रतिरोध के लिए डिप बेल्ट पर वजन लगाएं।",
         ],
         benefits: [
           "muscle-gain:Builds thick horseshoe-shaped triceps mass",
@@ -444,13 +748,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "4",
         reps: "8–12",
+        duration: "4 sets × 8–12 reps",
+        whenToDoIt: "Arms or push day, 2–3 times per week.",
+        whenToDoItHindi: "बाहों या पुश दिन, हफ्ते में 2–3 बार।",
+        photoUrl: ARMS_PHOTO,
       },
       {
         id: "skull-crusher",
         name: "Skull Crusher",
+        nameHindi: "स्कल क्रशर",
         targetMuscle: "Triceps (Long Head)",
+        targetMuscleHindi: "ट्राइसेप्स का लंबा सिरा",
         description:
           "Isolation exercise that targets the long head of the triceps with maximum stretch.",
+        descriptionHindi:
+          "ट्राइसेप्स के लंबे सिरे को अधिकतम खिंचाव के साथ टारगेट करने वाली आइसोलेशन एक्सरसाइज।",
         steps: [
           "Lie on a bench holding an EZ-bar or dumbbells above your chest.",
           "Keep upper arms completely vertical and still throughout.",
@@ -458,6 +770,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Stop just above your forehead — don't rest on your head.",
           "Extend arms back to the start by contracting the triceps.",
           "Use a spotter for heavy sets.",
+        ],
+        stepsHindi: [
+          "बेंच पर लेटें, EZ-बार या डम्बल सीने के ऊपर पकड़ें।",
+          "ऊपरी बांहें पूरे समय बिल्कुल खड़ी और स्थिर रखें।",
+          "कोहनियां मोड़ते हुए बार माथे की तरफ नीचे लाएं।",
+          "माथे के ठीक ऊपर रुकें — सिर पर रखें नहीं।",
+          "ट्राइसेप्स सिकोड़ते हुए बाहें वापस सीधी करें।",
+          "भारी सेट के लिए स्पॉटर रखें।",
         ],
         benefits: [
           "muscle-gain:Best exercise for the long head of the triceps",
@@ -467,13 +787,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "3",
         reps: "10–14",
+        duration: "3 sets × 10–14 reps",
+        whenToDoIt: "Arms day after dips, 2 times per week.",
+        whenToDoItHindi: "बाहों के दिन डिप्स के बाद, हफ्ते में 2 बार।",
+        photoUrl: ARMS_PHOTO,
       },
       {
         id: "cable-pushdown",
         name: "Tricep Cable Pushdown",
+        nameHindi: "ट्राइसेप केबल पुशडाउन",
         targetMuscle: "Triceps (All Heads)",
+        targetMuscleHindi: "ट्राइसेप्स के सभी सिरे",
         description:
           "Cable exercise providing constant tension on the triceps throughout the full range of motion.",
+        descriptionHindi:
+          "केबल एक्सरसाइज जो पूरे रेंज ऑफ मोशन में ट्राइसेप्स पर निरंतर टेंशन बनाए रखती है।",
         steps: [
           "Stand at a cable machine with a rope or straight bar attachment at high setting.",
           "Grip the attachment and lean slightly forward.",
@@ -481,6 +809,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Push the attachment down until arms are fully extended.",
           "Squeeze the triceps hard at the bottom, pause briefly.",
           "Return with control, letting the weight stretch your triceps at the top.",
+        ],
+        stepsHindi: [
+          "केबल मशीन पर रोप या सीधी बार अटैचमेंट ऊंचे पर लगाएं।",
+          "अटैचमेंट पकड़ें और थोड़ा आगे झुकें।",
+          "ऊपरी बांहें बगल में स्थिर रखें।",
+          "अटैचमेंट को नीचे दबाएं जब तक बाहें पूरी तरह सीधी हों।",
+          "नीचे ट्राइसेप्स को जोर से दबाएं, थोड़ा रुकें।",
+          "नियंत्रण में वापस आएं, ऊपर ट्राइसेप्स को खिंचाव दें।",
         ],
         benefits: [
           "muscle-gain:Constant tension through full range of motion",
@@ -490,6 +826,10 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "12–15",
+        duration: "3 sets × 12–15 reps",
+        whenToDoIt: "Arms day as a finisher, 2–3 times per week.",
+        whenToDoItHindi: "बाहों के दिन फिनिशर के रूप में, हफ्ते में 2–3 बार।",
+        photoUrl: ARMS_PHOTO,
       },
     ],
   },
@@ -502,9 +842,13 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
       {
         id: "overhead-press",
         name: "Barbell Overhead Press",
+        nameHindi: "बारबेल ओवरहेड प्रेस",
         targetMuscle: "Deltoids (All Heads)",
+        targetMuscleHindi: "कंधे की तीनों मांसपेशियां (डेल्टॉइड)",
         description:
           "The best compound shoulder mass builder. Engages all three deltoid heads plus the triceps and upper traps.",
+        descriptionHindi:
+          "कंधों की मास बनाने वाली सबसे बेहतरीन कम्पाउंड एक्सरसाइज। तीनों डेल्टॉइड के साथ ट्राइसेप्स और ऊपरी ट्रैप्स भी काम करते हैं।",
         steps: [
           "Set a barbell in a squat rack at shoulder height.",
           "Grip the bar slightly wider than shoulder width, palms facing forward.",
@@ -514,6 +858,15 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Lock out at the top with arms fully extended.",
           "Lower with control back to the starting position.",
         ],
+        stepsHindi: [
+          "स्क्वाट रैक में बारबेल को कंधे की ऊंचाई पर सेट करें।",
+          "कंधों से थोड़ा चौड़ा पकड़ें, हथेलियां आगे की ओर।",
+          "रैक से उठाएं और कॉलरबोन पर पकड़ें।",
+          "सांस लें और कोर को कसकर बांधें।",
+          "बार को सीधे ऊपर दबाएं, ठुड्डी थोड़ी अंदर।",
+          "ऊपर बाहें पूरी तरह सीधी करें।",
+          "नियंत्रण में वापस शुरुआती स्थिति में लाएं।",
+        ],
         benefits: [
           "muscle-gain:Builds all three heads of the deltoid for full shoulder development",
           "strength:Develops raw overhead strength and core stability",
@@ -522,13 +875,22 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "4",
         reps: "6–10",
+        duration: "4 sets × 6–10 reps",
+        whenToDoIt:
+          "Shoulder day, 2 times per week. First exercise of the session.",
+        whenToDoItHindi: "कंधे के दिन, हफ्ते में 2 बार। सेशन की पहली एक्सरसाइज।",
+        photoUrl: SHOULDERS_PHOTO,
       },
       {
         id: "lateral-raise",
         name: "Lateral Raise",
+        nameHindi: "लेटरल रेज़",
         targetMuscle: "Lateral Deltoid",
+        targetMuscleHindi: "बगल वाला डेल्टॉइड",
         description:
           "Isolation exercise for building shoulder width and the coveted V-taper. No other exercise creates this effect.",
+        descriptionHindi:
+          "कंधे की चौड़ाई और V-आकार बनाने की आइसोलेशन एक्सरसाइज। इसका असर कोई और एक्सरसाइज नहीं करती।",
         steps: [
           "Stand with feet shoulder-width apart, holding dumbbells at your sides.",
           "Have a slight bend in the elbows — maintain throughout.",
@@ -536,6 +898,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Stop when your wrists reach ear level — don't go higher.",
           "Hold for 1 second at the top, feeling the lateral delt burn.",
           "Lower slowly over 3 seconds — don't drop the weights.",
+        ],
+        stepsHindi: [
+          "पैर कंधे-चौड़ाई पर, डम्बल बगल में पकड़ें।",
+          "कोहनियों में हल्की मोड़ रखें — पूरे समय।",
+          "बाहों को बगल में नियंत्रित आर्क में उठाएं।",
+          "जब कलाई कान की ऊंचाई तक आए रुकें — ज्यादा नहीं।",
+          "ऊपर 1 सेकंड रोकें, लेटरल डेल्ट जलते महसूस करें।",
+          "3 सेकंड में धीरे नीचे लाएं — वजन न गिराएं।",
         ],
         benefits: [
           "muscle-gain:Creates visible shoulder width and the V-taper look",
@@ -545,19 +915,36 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "4",
         reps: "12–15",
+        duration: "4 sets × 12–15 reps",
+        whenToDoIt:
+          "Shoulder day, 2–3 times per week. Can add on back or arm day too.",
+        whenToDoItHindi:
+          "कंधे के दिन, हफ्ते में 2–3 बार। पीठ या बाहों के दिन भी जोड़ सकते हैं।",
+        photoUrl: SHOULDERS_PHOTO,
       },
       {
         id: "front-raise",
         name: "Dumbbell Front Raise",
+        nameHindi: "डम्बल फ्रंट रेज़",
         targetMuscle: "Anterior Deltoid",
+        targetMuscleHindi: "आगे वाला डेल्टॉइड",
         description:
           "Targets the front deltoids for complete shoulder development and balanced aesthetics.",
+        descriptionHindi:
+          "सामने वाले डेल्टॉइड को टारगेट करती है जिससे कंधे पूरे और संतुलित दिखते हैं।",
         steps: [
           "Stand holding dumbbells in front of your thighs, palms facing down.",
           "Keep a slight bend in the elbows throughout.",
           "Raise one or both dumbbells to shoulder height directly in front.",
           "Hold briefly at the top, then lower with control.",
           "Avoid swinging — the movement should be slow and controlled.",
+        ],
+        stepsHindi: [
+          "डम्बल जांघों के सामने पकड़ें, हथेलियां नीचे की ओर।",
+          "कोहनियों में हल्की मोड़ रखें।",
+          "एक या दोनों डम्बल को सीधे सामने कंधे की ऊंचाई तक उठाएं।",
+          "ऊपर थोड़ा रुकें, फिर नियंत्रण में नीचे लाएं।",
+          "झुलाएं नहीं — मूवमेंट धीमा और नियंत्रित होना चाहिए।",
         ],
         benefits: [
           "muscle-gain:Develops the front shoulder for a complete, rounded look",
@@ -567,13 +954,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "12–15",
+        duration: "3 sets × 12–15 reps",
+        whenToDoIt: "Shoulder day after overhead press, 2 times per week.",
+        whenToDoItHindi: "कंधे के दिन ओवरहेड प्रेस के बाद, हफ्ते में 2 बार।",
+        photoUrl: SHOULDERS_PHOTO,
       },
       {
         id: "face-pull",
         name: "Cable Face Pull",
+        nameHindi: "केबल फेस पुल",
         targetMuscle: "Rear Deltoids & Rotator Cuff",
+        targetMuscleHindi: "पिछले डेल्टॉइड और रोटेटर कफ",
         description:
           "Essential rear-delt and rotator cuff exercise that balances pushing movements and keeps shoulders healthy.",
+        descriptionHindi:
+          "पिछले डेल्टॉइड और रोटेटर कफ की जरूरी एक्सरसाइज जो पुशिंग मूवमेंट को बैलेंस करती है और कंधे स्वस्थ रखती है।",
         steps: [
           "Set a cable pulley to head height with a rope attachment.",
           "Grip the rope ends with both hands, step back for tension.",
@@ -581,6 +976,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "At peak contraction, your hands should be beside your ears.",
           "Externally rotate your upper arms at the top of the movement.",
           "Return slowly with control.",
+        ],
+        stepsHindi: [
+          "केबल पुली को सिर की ऊंचाई पर रोप अटैचमेंट के साथ सेट करें।",
+          "दोनों हाथों से रोप पकड़ें, टेंशन के लिए पीछे कदम रखें।",
+          "रोप को चेहरे की तरफ खींचें, कोहनियां बगल में फैली हों।",
+          "चोटी पर हाथ कानों के पास होने चाहिए।",
+          "मूवमेंट के शीर्ष पर ऊपरी बांहों को बाहर घुमाएं।",
+          "धीरे-धीरे नियंत्रण में वापस आएं।",
         ],
         benefits: [
           "endurance:Develops rear delts for balanced shoulder aesthetics",
@@ -590,19 +993,35 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "15–20",
+        duration: "3 sets × 15–20 reps",
+        whenToDoIt:
+          "Every session as a warm-up or finisher, 3–4 times per week.",
+        whenToDoItHindi: "हर सेशन में वार्म-अप या फिनिशर के रूप में, हफ्ते में 3–4 बार।",
+        photoUrl: SHOULDERS_PHOTO,
       },
       {
         id: "arnold-press",
         name: "Arnold Press",
+        nameHindi: "आर्नोल्ड प्रेस",
         targetMuscle: "All Three Deltoid Heads",
+        targetMuscleHindi: "तीनों डेल्टॉइड सिरे",
         description:
           "Named after Arnold Schwarzenegger — rotational press that hits all three deltoid heads in one movement.",
+        descriptionHindi:
+          "आर्नोल्ड श्वार्ज़नेगर के नाम पर — घुमाने वाला प्रेस जो एक मूवमेंट में तीनों डेल्टॉइड को काम करता है।",
         steps: [
           "Sit on an upright bench holding dumbbells at shoulder height, palms facing you.",
           "As you press the weights up, rotate your palms to face forward.",
           "Continue pressing until arms are fully extended overhead.",
           "Reverse the rotation as you lower, finishing with palms facing in.",
           "The rotation motion engages all three deltoid heads through the range.",
+        ],
+        stepsHindi: [
+          "सीधी बेंच पर बैठें, डम्बल कंधे की ऊंचाई पर, हथेलियां आपकी तरफ।",
+          "ऊपर प्रेस करते हुए हथेलियां आगे की ओर घुमाएं।",
+          "बाहें पूरी तरह ऊपर सीधी होने तक प्रेस करें।",
+          "नीचे लाते हुए हथेलियां वापस अंदर की ओर घुमाएं।",
+          "घुमाव का मूवमेंट तीनों डेल्टॉइड को एंगेज करता है।",
         ],
         benefits: [
           "muscle-gain:Hits all three deltoid heads for complete development",
@@ -612,6 +1031,10 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "3",
         reps: "10–12",
+        duration: "3 sets × 10–12 reps",
+        whenToDoIt: "Shoulder day after overhead press, 2 times per week.",
+        whenToDoItHindi: "कंधे के दिन ओवरहेड प्रेस के बाद, हफ्ते में 2 बार।",
+        photoUrl: SHOULDERS_PHOTO,
       },
     ],
   },
@@ -624,9 +1047,13 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
       {
         id: "plank",
         name: "Plank Hold",
+        nameHindi: "प्लैंक होल्ड",
         targetMuscle: "Transverse Abdominis & Full Core",
+        targetMuscleHindi: "ट्रांसवर्स एब्डोमिनिस और पूरा कोर",
         description:
           "Isometric core exercise that builds deep core stability and endurance. The foundation of all core training.",
+        descriptionHindi:
+          "आइसोमेट्रिक कोर एक्सरसाइज जो गहरी कोर स्थिरता और सहनशक्ति बनाती है। सभी कोर ट्रेनिंग की नींव।",
         steps: [
           "Get into a forearm plank position — elbows under shoulders.",
           "Keep your body in a perfectly straight line from head to heels.",
@@ -634,6 +1061,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Keep hips level — no sagging or raising.",
           "Breathe steadily — don't hold your breath.",
           "Hold for the prescribed duration with perfect form.",
+        ],
+        stepsHindi: [
+          "फोरआर्म प्लैंक में आएं — कोहनियां कंधों के नीचे।",
+          "सिर से एड़ी तक शरीर बिल्कुल सीधी लाइन में।",
+          "ग्लूट्स कसें और कोर को टाइट रखें।",
+          "कूल्हे सीधे रखें — न झुकें न उठें।",
+          "नियमित सांस लें — सांस न रोकें।",
+          "परफेक्ट फॉर्म के साथ निर्धारित समय तक होल्ड करें।",
         ],
         benefits: [
           "strength:Builds deep core stability that protects the spine",
@@ -643,13 +1078,23 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "30–60s hold",
+        duration: "3 sets × 30–60 seconds hold",
+        whenToDoIt:
+          "Daily or 5 times per week. Great as morning routine or workout warm-up.",
+        whenToDoItHindi:
+          "रोज या हफ्ते में 5 बार। सुबह की दिनचर्या या वर्कआउट वार्म-अप के रूप में।",
+        photoUrl: ABS_PHOTO,
       },
       {
         id: "hanging-leg-raise",
         name: "Hanging Leg Raise",
+        nameHindi: "हैंगिंग लेग रेज़",
         targetMuscle: "Lower Rectus Abdominis",
+        targetMuscleHindi: "निचले पेट की मांसपेशी",
         description:
           "Best exercise for lower abs development. Requires grip strength and full body control.",
+        descriptionHindi:
+          "निचले एब्स विकसित करने की सबसे बेहतरीन एक्सरसाइज। ग्रिप स्ट्रेंथ और पूरे शरीर का नियंत्रण चाहिए।",
         steps: [
           "Hang from a pull-up bar with both hands, arms fully extended.",
           "Engage your core and keep legs together.",
@@ -657,6 +1102,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Aim to bring your legs to 90 degrees or higher.",
           "Lower with control — resist the urge to swing.",
           "For beginners, bent-knee version is acceptable.",
+        ],
+        stepsHindi: [
+          "पुल-अप बार पर दोनों हाथों से लटकें, बाहें पूरी तरह सीधी।",
+          "कोर एंगेज करें, पैर पास रखें।",
+          "एब्स सिकोड़ते हुए पैर ऊपर उठाएं — हिप फ्लेक्सर्स से नहीं।",
+          "पैरों को 90 डिग्री या ज्यादा उठाने की कोशिश करें।",
+          "नियंत्रण में नीचे लाएं — झुलाने की इच्छा रोकें।",
+          "शुरुआती लोगों के लिए घुटने मुड़े वाला वर्जन ठीक है।",
         ],
         benefits: [
           "muscle-gain:Best exercise for lower abs definition",
@@ -666,13 +1119,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "3",
         reps: "10–15",
+        duration: "3 sets × 10–15 reps",
+        whenToDoIt: "Core day, 3 times per week. Do after planks.",
+        whenToDoItHindi: "कोर के दिन, हफ्ते में 3 बार। प्लैंक के बाद करें।",
+        photoUrl: ABS_PHOTO,
       },
       {
         id: "crunch",
         name: "Cable Crunch",
+        nameHindi: "केबल क्रंच",
         targetMuscle: "Rectus Abdominis (Upper)",
+        targetMuscleHindi: "ऊपरी पेट की मांसपेशी",
         description:
           "Weighted ab exercise using cable resistance for progressive overload — critical for building visible abs.",
+        descriptionHindi:
+          "प्रोग्रेसिव ओवरलोड के लिए केबल रेसिस्टेंस से वजनी एब्स एक्सरसाइज — दिखाई देने वाले एब्स के लिए जरूरी।",
         steps: [
           "Kneel at a cable machine with a rope attachment at the top.",
           "Hold the rope at the sides of your head.",
@@ -680,6 +1141,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Crunch down, pulling your elbows toward your knees.",
           "Squeeze abs hard at the bottom contraction.",
           "Return slowly to starting position — the negative counts.",
+        ],
+        stepsHindi: [
+          "केबल मशीन पर ऊपर रोप अटैचमेंट के साथ घुटनों पर बैठें।",
+          "रोप को सिर के दोनों तरफ पकड़ें।",
+          "कूल्हे स्थिर रखें — मूवमेंट केवल रीढ़ से हो।",
+          "क्रंच करें, कोहनियां घुटनों की तरफ खींचें।",
+          "नीचे एब्स को जोर से दबाएं।",
+          "धीरे-धीरे शुरुआती स्थिति में वापस आएं।",
         ],
         benefits: [
           "muscle-gain:Allows progressive overload for abs development",
@@ -689,13 +1158,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Intermediate",
         sets: "4",
         reps: "12–20",
+        duration: "4 sets × 12–20 reps",
+        whenToDoIt: "Core day, 2–3 times per week.",
+        whenToDoItHindi: "कोर के दिन, हफ्ते में 2–3 बार।",
+        photoUrl: ABS_PHOTO,
       },
       {
         id: "russian-twist",
         name: "Russian Twist",
+        nameHindi: "रशियन ट्विस्ट",
         targetMuscle: "Obliques & Transverse Abdominis",
+        targetMuscleHindi: "ओब्लिक और ट्रांसवर्स एब्डोमिनिस",
         description:
           "Rotational core exercise for developing the obliques and improving athletic rotational power.",
+        descriptionHindi:
+          "ओब्लिक बनाने और एथलेटिक रोटेशनल पावर सुधारने के लिए घुमावदार कोर एक्सरसाइज।",
         steps: [
           "Sit on the floor with knees bent, feet hovering or anchored.",
           "Lean back 45 degrees, maintaining a straight spine.",
@@ -703,6 +1180,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Rotate your torso to the right, bringing hands to the right side.",
           "Return to center and rotate to the left.",
           "One left + one right = 1 rep. Control the movement.",
+        ],
+        stepsHindi: [
+          "फर्श पर बैठें, घुटने मुड़े, पैर लटके या टिके।",
+          "45 डिग्री पीछे झुकें, रीढ़ सीधी रखें।",
+          "दोनों हाथों से वजन प्लेट या डम्बल सीने के सामने पकड़ें।",
+          "धड़ को दाईं तरफ घुमाएं।",
+          "वापस बीच में आएं और बाईं तरफ घुमाएं।",
+          "बाईं + दाईं = 1 रेप। मूवमेंट नियंत्रित करें।",
         ],
         benefits: [
           "muscle-gain:Builds strong obliques for a tapered waistline",
@@ -712,13 +1197,22 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "16–24",
+        duration: "3 sets × 16–24 reps",
+        whenToDoIt:
+          "Core day, 3 times per week. Good at any point in the workout.",
+        whenToDoItHindi: "कोर के दिन, हफ्ते में 3 बार। वर्कआउट में कभी भी करें।",
+        photoUrl: ABS_PHOTO,
       },
       {
         id: "bicycle-crunch",
         name: "Bicycle Crunch",
+        nameHindi: "बाइसिकल क्रंच",
         targetMuscle: "Rectus Abdominis & Obliques",
+        targetMuscleHindi: "रेक्टस एब्डोमिनिस और ओब्लिक",
         description:
           "Studies show bicycle crunches are one of the most effective ab exercises, targeting both the six-pack and obliques.",
+        descriptionHindi:
+          "शोध से पता चला है कि बाइसिकल क्रंच सबसे प्रभावी एब्स एक्सरसाइज में से एक है, सिक्स-पैक और ओब्लिक दोनों को टारगेट करती है।",
         steps: [
           "Lie flat on your back, hands behind your head, knees raised to 90 degrees.",
           "Lift your shoulders off the floor into a crunch position.",
@@ -726,6 +1220,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Switch sides — left elbow to right knee — in a pedaling motion.",
           "Keep lower back pressed to the floor throughout.",
           "Move in a slow, controlled manner — don't rush.",
+        ],
+        stepsHindi: [
+          "पीठ के बल लेटें, हाथ सिर के पीछे, घुटने 90 डिग्री उठे।",
+          "कंधों को क्रंच की स्थिति में फर्श से उठाएं।",
+          "दाईं कोहनी को बाएं घुटने की तरफ लाएं, दायां पैर सीधा करें।",
+          "साइड बदलें — बाईं कोहनी दाएं घुटने तरफ — साइकिल चलाने की तरह।",
+          "पूरे समय कमर फर्श से लगी रहे।",
+          "धीमे और नियंत्रित तरीके से करें — जल्दी न करें।",
         ],
         benefits: [
           "fat-loss:One of the highest muscle activity scores of any ab exercise",
@@ -735,13 +1237,21 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Beginner",
         sets: "3",
         reps: "20–30",
+        duration: "3 sets × 20–30 reps",
+        whenToDoIt: "Core day, daily if desired. Great as morning activation.",
+        whenToDoItHindi: "कोर के दिन, चाहें तो रोज। सुबह एक्टिवेशन के लिए बढ़िया।",
+        photoUrl: ABS_PHOTO,
       },
       {
         id: "ab-wheel-rollout",
         name: "Ab Wheel Rollout",
+        nameHindi: "एब व्हील रोलआउट",
         targetMuscle: "Core, Lats & Shoulders",
+        targetMuscleHindi: "कोर, लैट्स और कंधे",
         description:
           "Challenging exercise that engages the entire anterior core under maximum stretch — one of the best ab exercises.",
+        descriptionHindi:
+          "चुनौतीपूर्ण एक्सरसाइज जो अधिकतम खिंचाव में पूरे आगे के कोर को काम करती है — सबसे बेहतरीन एब्स एक्सरसाइज में से एक।",
         steps: [
           "Kneel on a mat with the ab wheel in front of you.",
           "Grip the handles, engage your core fully before starting.",
@@ -749,6 +1259,14 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
           "Extend as far as you can while maintaining a neutral spine.",
           "Pull back by contracting your abs and lats simultaneously.",
           "Beginners: use a wall to limit the range of motion.",
+        ],
+        stepsHindi: [
+          "मैट पर घुटनों पर बैठें, एब व्हील सामने।",
+          "हैंडल पकड़ें, शुरू करने से पहले कोर पूरी तरह एंगेज करें।",
+          "व्हील को धीरे आगे रोल करें, शरीर फर्श की तरफ लाएं।",
+          "तटस्थ रीढ़ बनाए रखते हुए जितना हो सके आगे जाएं।",
+          "एब्स और लैट्स एक साथ सिकोड़ते हुए वापस आएं।",
+          "शुरुआती लोग: रेंज ऑफ मोशन सीमित करने के लिए दीवार का उपयोग करें।",
         ],
         benefits: [
           "strength:Challenges the core through maximum extension under load",
@@ -758,6 +1276,10 @@ export const WORKOUT_CATEGORIES: WorkoutCategory[] = [
         difficulty: "Advanced",
         sets: "3",
         reps: "8–12",
+        duration: "3 sets × 8–12 reps",
+        whenToDoIt: "Core day, 2–3 times per week. Do last — it's demanding.",
+        whenToDoItHindi: "कोर के दिन, हफ्ते में 2–3 बार। सबसे आखिर में करें — यह कठिन है।",
+        photoUrl: ABS_PHOTO,
       },
     ],
   },

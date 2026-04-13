@@ -13,13 +13,13 @@ const PLAN_ICONS: Record<string, React.ReactNode> = {
 export default function Membership() {
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20enquire%20about%20Isher%20Gym%20membership",
+      "https://wa.me/917023095979?text=Hi%2C%20I%20want%20to%20enquire%20about%20Isher%20Gym%20membership",
       "_blank",
     );
   };
 
   const handleCall = () => {
-    window.location.href = "tel:+919876543210";
+    window.location.href = "tel:7023095979";
   };
 
   return (
@@ -205,7 +205,7 @@ export default function Membership() {
             data-ocid="btn-call"
           >
             <Phone size={16} />
-            Call +91 98765 43210
+            Call 7023095979
           </button>
         </div>
 

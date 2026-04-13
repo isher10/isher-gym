@@ -1,3 +1,18 @@
+type UserChallenge = 
+ record {
+   badgeEarned: bool;
+   completed: bool;
+   currentDay: nat;
+   id: nat;
+   startDate: text;
+   templateId: nat;
+ };
+type ReminderSettings = 
+ record {
+   enabled: bool;
+   restDays: vec nat;
+   time: text;
+ };
 type ProgressEntry = 
  record {
    date: text;
@@ -6,11 +21,71 @@ type ProgressEntry =
    weight: float64;
    workoutsCompleted: nat;
  };
+type GamificationProfile = 
+ record {
+   badges: vec text;
+   lastActivityDate: text;
+   level: nat;
+   points: nat;
+   totalChallengesCompleted: nat;
+   totalWorkoutsLogged: nat;
+ };
+type FeedbackEntry = 
+ record {
+   date: text;
+   id: nat;
+   message: text;
+   name: text;
+   photoUrl: text;
+ };
+type ChallengeTemplate = 
+ record {
+   description: text;
+   difficulty: text;
+   durationDays: nat;
+   exercises: vec text;
+   goal: text;
+   id: nat;
+   name: text;
+ };
+type BmiEntry = 
+ record {
+   bmi: float64;
+   category: text;
+   date: text;
+   height: float64;
+   id: nat;
+   weight: float64;
+ };
 service : {
+  addBmiEntry: (height: float64, weight: float64, date: text) -> (BmiEntry);
+  addChallengeTemplate: (name: text, description: text, durationDays: 
+   nat, goal: text, difficulty: text, exercises: vec text) ->
+   (ChallengeTemplate);
+  addFeedback: (name: text, photoUrl: text, message: text, date: text) ->
+   (nat);
+  addPoints: (amount: nat, reason: text) -> (GamificationProfile);
   addProgress: (weight: float64, workoutsCompleted: nat, notes: text, date:
    text) -> (ProgressEntry);
+  addUserChallenge: (templateId: nat, startDate: text) -> (UserChallenge);
+  deleteBmiEntry: (id: nat) -> (bool);
+  deleteChallengeTemplate: (id: nat) -> (bool);
+  deleteFeedback: (id: nat) -> (bool);
   deleteProgress: (id: nat) -> (bool);
+  deleteUserChallenge: (id: nat) -> (bool);
+  getGamificationProfile: () -> (GamificationProfile) query;
+  getReminderSettings: () -> (opt ReminderSettings) query;
+  listBmiEntries: () -> (vec BmiEntry) query;
+  listChallengeTemplates: () -> (vec ChallengeTemplate) query;
+  listFeedback: () -> (vec FeedbackEntry) query;
   listProgress: () -> (vec ProgressEntry) query;
+  listUserChallenges: () -> (vec UserChallenge) query;
+  resetGamification: () -> ();
+  saveReminderSettings: (enabled: bool, time: text, restDays: vec nat) ->
+   (ReminderSettings);
+  unlockBadge: (badgeId: text) -> (bool);
+  updateChallengeProgress: (id: nat, currentDay: nat, completed: bool,
+   badgeEarned: bool) -> (bool);
   updateProgress: (id: nat, weight: float64, workoutsCompleted: nat, notes:
    text, date: text) -> (bool);
 }
